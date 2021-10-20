@@ -1,0 +1,116 @@
+<!-- 
+    Online Express Powered Pledge Pay form that receives information passed via link from the LOLX-PledgeList_OLX.html page.  For (auto) logged-in individuals, the S-Tags prefill key biographical information. 
+
+    REQUIRED: Embedded Online Express Form configured for at least CC payments with simply the "other" amount enabled. This uses the "Magic Links" functionality of Online Express to auto-select the fund.  NOTE: Even though we're auto-selecting and hiding the designation, _every_ designation to which a pledge payment may be made has to be included among the options. 
+
+    EXPECTED incoming URL Parameters:
+    * BBFund - The SystemRecordID of the Fund
+    * BalanceAmount - The Remaining Balance.  We auto-fill the "Other" box on the OLX form with this amount, but they can change it.
+    * FundText - The Description of the Fund (strictly for display purposes).  Calling it "FundDescription" somehow gets mangled via LO. 
+
+
+
+-->
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style>
+    /* Hide the OLX Designation as that's being auto-filled. If using the optional Luminate Online Member ID Gift Attribute, use this code to
+hide the Giving Preferences section.  If part of the section is still needed, replace it with corresponding CSS. */
+
+    div[class="BBFormSection BBDFormSectionDesignationInfo"] {
+        display: none !important;
+    }
+
+    div[class="BBFormSection BBFormSectionAttributes BBFormSectionGiftAttributes"] {
+        display: none !important;
+    }
+</style>
+
+<script>
+    //Toggle the usually hidden element(s)
+    $(document).ready(function () {
+        $("#demoToggle").click(function () {
+            $(".BBFormSectionGiftAttributes").toggle();
+            $(".BBDFormSectionDesignationInfo").toggle();
+        });
+    });
+</script>
+
+<script>
+    //Let's pull in the URL query strings
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const fundID = urlParams.get('BBFund');
+    const balanceAmount = urlParams.get('BalanceAmount');
+    //changed the fundDescription parameter to FundText due to some weird URL rewriting caused by LO. 
+    const fundText = urlParams.get('FundText');
+</script>
+
+
+<center>
+    <H2 id="pledgeWelcome">Welcome</H2>
+    <div id="pledgeInstructions"></div>
+
+    <script>
+        //We're assuming that it's just logged in people coming here, so not putting in any conditionals.
+        pledgeWelcome = `Thank you, [[S1:first_name]], for your pledge payment toward the ${fundText}.`;
+        pledgeInstructions = `Your current balance is ${balanceAmount}.  You can pay all at once or a portion.`;
+
+        $('#pledgeWelcome').html(pledgeWelcome);
+        $('#pledgeInstructions').html(pledgeInstructions);
+    </script>
+
+
+    <!-- Begin YOUR OLX Form Embed Code -->
+    <div id="bbox-root"></div>
+    <script type="text/javascript">
+        window.bboxInit = function () {
+            bbox.showForm('FORM IDENTIFIER');
+
+        };
+        (function () {
+            var e = document.createElement('script'); e.async = false;
+            e.src = 'https://bbox.blackbaudhosting.com/webforms/bbox-min.js';
+            document.getElementsByTagName('head')[0].appendChild(e);
+        }());
+
+    </script>
+
+    <!-- End YOUR OLX Form Embed Code -->
+</center>
+
+
+<script>
+    /* The above script pulls in the OLX form.  The below periodically checks to see when the form (or specifically, the submit button) has been rendered to then go through and fill out the rest. There are apparently better ways to do this, but at least it gets the job done. */
+
+    var checkExist = setInterval(function () {
+        if ($('#bboxdonation_btnSubmit').length) {
+
+            //after OLX form loads, the page jumps.. this sends it back to the top. 
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+              //Put Auto-fill/replacement items here
+            $('#bboxdonation_giftattributes_ctl00_txtAttrib').val('[[S1: member_id]]');
+            $('#bboxdonation_billing_txtFirstName').val('[[S1:first_name]]');
+            $('#bboxdonation_billing_txtLastName').val('[[S1:last_name]]');
+            $('#bboxdonation_billing_txtEmail').val('[[S1:primary_email]]');
+
+            var HomeAddress = '[[S1:home_street1]]\n[[S1:home_street2]]\n[[S1:home_street3]]';
+            //confirmed blank home_street2 and 3 won't create blank lines in RE.
+
+            $('#bboxdonation_billing_billingAddress_txtAddress').val(HomeAddress);
+            $('#bboxdonation_billing_billingAddress_txtCity').val('[[S1:home_city]]');
+            $('#bboxdonation_billing_billingAddress_ddState').val('[[S1:home_stateprov]]');
+            $('#bboxdonation_billing_billingAddress_txtZip').val('[[S1:home_zip]]');
+
+            //The Pledge Balance 
+            $('#bboxdonation_gift_txtAmountGift').val(balanceAmount);
+
+            clearInterval(checkExist);
+        }
+    }, 100); // check every 100ms
+</script>

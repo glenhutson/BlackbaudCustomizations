@@ -1,0 +1,255 @@
+<!--
+    "Smart" Membership Form.  Embed an OLX Membership form on this page for sign-ups and renewals.  
+
+    For logged-in users, S-Tags prefills bio information.  Use SKY API facilitated by Power Automate to retrive current membership and expiration date.  Leverage current membership to hide "lower" memberships upon renewal. 
+
+    THIS IS A VERY SPECIFIC example in which the dynamics of which levels to show/hide are hard coded in. 
+
+    Script sends to a Power Automate flow triggered by "When a HTTP request is received" the Membership Program as well as Luminate Member ID (RE System Record ID).  Flow returns MembershipCategory and MembershipExpiration.  Switch cases are used to determine which levels to hide/tweak. 
+
+    REQUIRED: URL to your Power Automate Flow with "Program" and "SystemRecordID" URL paramaters appended.  In this example, Program is hard coded to pass to SKY API.  SystemRecordID is obtained from the Lumiante Online Member ID.   
+
+
+-->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style id="LOLXstyle">
+    table {
+        border-collapse: collapse;
+
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #loader {
+        border: 8px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 8px solid #3498db;
+        width: 32px;
+        height: 32px;
+        -webkit-animation: spin 2s linear infinite;
+        /* Safari */
+        animation: spin 2s linear infinite;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Will hide the OLX firm first while it renders and the scripts make their changes and then show it */
+
+    #LOLXForm {
+        display: none;
+    }
+</style>
+
+
+
+
+
+<H1 style="text-align: center;" id="MainHeading">Join Now</H1>
+<BR>
+<BR>
+<BR>
+
+
+
+<!--  Have to move the Div here for when the error/not logged in is needed.  -->
+<div id="loader"></div>
+<!--div id="standBy">Please Wait as we pull your report.</div-->
+<div id="powerResults"></div>
+
+
+
+
+
+
+<center>
+    <div id="LOLXForm">
+        <!-- Begin YOUR OLX Form Embed Code -->
+        <div id="FORM IDENTIFIER"></div>
+        <script type="text/javascript">
+            var bboxInit2 = bboxInit2 || [];
+            bboxInit2.push(function () {
+                bboxApi.showForm('FORM IDENTIFIER');
+            });
+            (function () {
+                var e = document.createElement('script'); e.async = true;
+                e.src = 'https://bbox.blackbaudhosting.com/webforms/bbox-2.0-min.js';
+                document.getElementsByTagName('head')[0].appendChild(e);
+            }());
+        </script>
+        <!-- END YOUR OLX Form Embed Code -->
+    </div>
+</center>
+
+
+<script>
+    /* The above script pulls in the OLX form.  The below periodically checks to see when the form (or specifically, the submit button) has been rendered to then go through and fill out the rest. There are apparently better ways to do this, but at least it gets the job done. */
+
+    var checkExist = setInterval(function () {
+        if ($('#bboxmembership_btnSecurePayment').length) {
+
+
+            //Put Auto-fill/replacement items here
+            $('#bboxmembership_billing_txtFirstName').val('[[S1:first_name]]');
+            $('#bboxmembership_billing_txtLastName').val('[[S1:last_name]]');
+            $('#bboxmembership_billing_txtEmail').val('[[S1:primary_email]]');
+
+            var HomeAddress = '[[S1:home_street1]]\n[[S1:home_street2]]\n[[S1:home_street3]]';
+            //confirmed blank home_street2 and 3 won't create blank lines in RE.
+
+
+            $('#bboxmembership_billing_billingAddress_txtAddress').val(HomeAddress);
+            $('#bboxmembership_billing_billingAddress_txtCity').val('[[S1:home_city]]');
+            $('#bboxmembership_billing_billingAddress_ddState').val('[[S1:home_stateprov]]');
+            $('#bboxmembership_billing_billingAddress_txtZip').val('[[S1:home_zip]]');
+
+
+            clearInterval(checkExist);
+        }
+    }, 100); // check every 100ms
+</script>
+
+
+<!-- If there is no member_id on file (and hence no associated RENXT record), don't even call the Power Automate  -->
+
+<convio:choose xmlns="http://www.convio.com">
+    <convio:when title="Not empty" test="nempty">
+        <convio:op>[[S1:member_id]]</convio:op>
+        <convio:then>
+
+            <script type="text/javascript">
+
+                var checkExist2 = setInterval(function () {
+                    if ($('#bboxmembership_btnSecurePayment').length) {
+
+                        //YOUR Power Automate URL Here
+                        var url = 'https://YOURURL&Program=Social%20Good&SystemRecordID=[[S1:member_id]]';
+
+
+                        var MembershipCategory;
+                        var MembershipExpires;
+
+
+                        $.get(url, function (data, status) {
+
+                            MembershipCategory = data[0].category;
+                            MembershipExpires = (new Date(data[0].expires)).toDateString();
+                            //now deal with the variables of the various membership levels
+
+                            switch (MembershipCategory) {
+
+                                case "Bronze":
+                                    BronzeMessage = '<div id="BronzeMessage" style="text-align: center;"> <H2>Thank you for being a Bronze Member</H2>  \
+                                    Your current membership expires on ' + MembershipExpires + '. You can use the form below to renew or upgrade your membership.</div>';
+                                    document.getElementById("powerResults").innerHTML = BronzeMessage;
+                                    //Update the main Header
+                                    document.getElementById("MainHeading").innerHTML = "Renew or Upgrade Now";
+                                    //relabel Bronze's Join Now to Renew Now.  Each "Join Now" button uses the same ID, so resorting to ClassName. There's a Hidden "0", so bronze starts at 1
+                                    document.getElementsByClassName("BBLinkJoinMembershipButton BBFormFieldLabelEdit")[1].innerHTML = document.getElementsByClassName("BBLinkJoinMembershipButton BBFormFieldLabelEdit")[1].innerHTML.replace("Join now", "Renew Now");
+                                    //relabel Silver and Gold to Upgrade Now
+                                    document.getElementsByClassName("BBLinkJoinMembershipButton BBFormFieldLabelEdit")[2].innerHTML = document.getElementsByClassName("BBLinkJoinMembershipButton BBFormFieldLabelEdit")[2].innerHTML.replace("Join now", "Upgrade Now");
+                                    document.getElementsByClassName("BBLinkJoinMembershipButton BBFormFieldLabelEdit")[3].innerHTML = document.getElementsByClassName("BBLinkJoinMembershipButton BBFormFieldLabelEdit")[3].innerHTML.replace("Join now", "Upgrade Now");
+                                    //now hide the loader and show the OLX Form
+                                    document.getElementById("loader").style.display = "none";
+                                    document.getElementById("LOLXForm").style.display = "inline";
+                                    break;
+                                case "Silver":
+                                    SilverMessage = '<div id="SilverMessage" style="text-align: center;"> <H2>Thank you for being a Silver Member</H2>  \
+                                    Your current membership expires on ' + MembershipExpires + '. You can use the form below to renew or upgrade your membership.</div>';
+                                    document.getElementById("powerResults").innerHTML = SilverMessage;
+                                    //Update the main Header
+                                    document.getElementById("MainHeading").innerHTML = "Renew or Upgrade Now";
+                                    //hide Bronze
+                                    document.getElementById("MembershipOption-BB35").style.display = "none";
+
+
+                                    //relabel Silver Join Now to Renew Now.  Each "Join Now" button uses the same ID, so resorting to ClassName. There's a Hidden "0", so bronze starts at 1
+                                    document.getElementsByClassName("BBLinkJoinMembershipButton BBFormFieldLabelEdit")[2].innerHTML = document.getElementsByClassName("BBLinkJoinMembershipButton BBFormFieldLabelEdit")[2].innerHTML.replace("Join now", "Renew Now");
+                                    //relabel Gold to Upgrade Now
+                                    document.getElementsByClassName("BBLinkJoinMembershipButton BBFormFieldLabelEdit")[3].innerHTML = document.getElementsByClassName("BBLinkJoinMembershipButton BBFormFieldLabelEdit")[3].innerHTML.replace("Join now", "Upgrade Now");
+                                    //now hide the loader and show the OLX Form
+                                    document.getElementById("loader").style.display = "none";
+                                    document.getElementById("LOLXForm").style.display = "inline";
+                                    break;
+                                case "Gold":
+                                    GoldMessage = '<div id="GoldMessage" style="text-align: center;"> <H2>Thank you for being a Gold Member</H2>  \
+                                    Your current membership expires on ' + MembershipExpires + '. You can use the form below to renew or upgrade your membership.</div>';
+                                    document.getElementById("powerResults").innerHTML = GoldMessage;
+                                    //Update the main Header
+                                    document.getElementById("MainHeading").innerHTML = "Renew Now";
+                                    //hide Bronze
+                                    document.getElementById("MembershipOption-BB35").style.display = "none";
+                                    //hide Silver
+                                    document.getElementById("MembershipOption-BB36").style.display = "none";
+
+
+                                    //relabel Gold Join Now to Renew Now.  Each "Join Now" button uses the same ID, so resorting to ClassName. There's a Hidden "0", so bronze starts at 1
+                                    document.getElementsByClassName("BBLinkJoinMembershipButton BBFormFieldLabelEdit")[3].innerHTML = document.getElementsByClassName("BBLinkJoinMembershipButton BBFormFieldLabelEdit")[3].innerHTML.replace("Join now", "Renew Now");
+                                    //now hide the loader and show the OLX Form
+                                    document.getElementById("loader").style.display = "none";
+                                    document.getElementById("LOLXForm").style.display = "inline";
+                                    break;
+                                default:
+                                    NoMembershipMessage = '<div id="NoMembershipMessage" style="text-align: center;"> Thank you for your interest in becoming a member. \
+                                    You can use the form below to select a membership.</div>';
+                                    document.getElementById("powerResults").innerHTML = NoMembershipMessage;
+                                    //now hide the loader and show the OLX Form
+                                    document.getElementById("loader").style.display = "none";
+                                    document.getElementById("LOLXForm").style.display = "inline";
+                            }
+                        });
+
+
+
+                        clearInterval(checkExist2);
+                    }
+                }, 100); // check every 100ms
+            </script>
+
+
+
+
+        </convio:then>
+    </convio:when>
+    <convio:otherwise title="Not Linked to RENXT">
+
+        <script>
+            NotLinkedMessage = '<div id="NotLinkedMessage" style="text-align: center;"> Thank you for your interest in becoming a member. \
+                                    You can use the form below to select a membership.</div>';
+            document.getElementById("powerResults").innerHTML = NotLinkedMessage;
+            //now hide the loader and show the OLX Form
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("LOLXForm").style.display = "inline";
+
+        </script>
+
+    </convio:otherwise>
+</convio:choose>

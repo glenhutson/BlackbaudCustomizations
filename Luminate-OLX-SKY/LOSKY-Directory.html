@@ -1,0 +1,65 @@
+<!-- 
+    Below leverages the Constituent Search capabilities of SKY API Facilitated by Power Automate to return a list of constituents based on a submitted search string.  
+
+    REQUIRED: Link to Power Automate URL with appended "SearchQuery" URL paramater. 
+
+    RETURNS: HTML Table of results. 
+    -->
+
+
+Proof of concept searching RENXT via the <a
+    href="https://developer.sky.blackbaud.com/docs/services/56b76470069a0509c8f1c5b3/operations/SearchConstituent">Constituent
+    (Search)</a> endpoint facilitated by Power Automated. "Supports first name, last name, preferred name, former name,
+alias, email address, phone number, address, or lookup ID. Name combinations, such as first name and last name or
+preferred name and last name, are valid, but otherwise search only supports one parameter at a time." <BR>
+<BR>
+Listed below is the initial values returned by the search. Further details about each constituent can be obtained via
+additional calls. <BR>
+<BR>
+<BR>
+<BR>
+<style>
+    table {
+        border-collapse: collapse;
+
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<label for="SearchQuery">SearchQuery:</label>
+<input type="text" id="SearchQuery" name="SearchQuery">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("button").click(function () {
+
+            document.getElementById("SearchStatus").innerHTML = "Search in progress...";
+            //YOUR Power Automate URL Below
+            var url = 'https://YOURURL&SearchQuery=' + document.getElementById("SearchQuery").value;
+            $.get(url, function (data, status) {
+                document.getElementById("powerResults").innerHTML = data;
+                document.getElementById("SearchStatus").innerHTML = "Search Complete";
+            });
+        });
+
+
+
+    });
+
+</script>
+<button id="button">Search</button><BR>
+<div id="SearchStatus"></div>
+<div id="powerResults"></div>

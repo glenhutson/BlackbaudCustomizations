@@ -1,0 +1,111 @@
+<!-- Shell page for retrieving outstanding pledges via SKY API facilitated by Power Automate.  The result is a list of outstanding pledges with a link to a PageBuilder Page with an OLX embedded Donation  Form (See "LOLX-PledgePay_OLX.html") to pay toward that pledge. 
+
+    REQUIRED: 
+    
+    Power Automate flow utilizing Raiser's Edge NXT Connector triggered by "When a HTTP request is received" to cycle through and return outstanding pledges.  
+    
+    Call the Flow URL and append "&SystemRecordId=[[S1:member_id]]" .  
+    
+    The flow should parse out that URL parameter to use in the "List gifts" action with that value as "ConstituentID"
+
+    The Flow should return a list of outstanding pledges with a link to above referenced OLX embedded Donation Form with at least URL parameters BBFund (The SystemRecordID of the fund), BalanceAmount, FundText (Fund Description).  DO NOT try to use "FundDescription" as that URL parameter though it makes the most sense: LO does some odd rewriting and breaks it. 
+
+    Recommended that the "LOLX-PledgePay_OLX.html" page is created first. 
+
+
+
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    /* For the spinning loader*/
+    table {
+        border-collapse: collapse;
+
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #loader {
+        border: 8px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 8px solid #3498db;
+        width: 32px;
+        height: 32px;
+        -webkit-animation: spin 2s linear infinite;
+        /* Safari */
+        animation: spin 2s linear infinite;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<H1 id="welcome" style="text-align: center;">Welcome, [[S1:first_name]]</H1>
+<p id="introduction" style="text-align: center;">See below for your current outstanding pledges. Click on the balance
+    amount to pay toward your pledge. </p>
+<BR>
+<BR>
+<BR>
+<convio:choose xmlns="http://www.convio.com">
+    <convio:when title="Not empty" test="nempty">
+        <convio:op>[[S1:member_id]]</convio:op>
+        <convio:then>
+
+
+            <center>
+                <div id="loader"></div>
+                <div id="standBy">Please Wait as we pull your report.</div>
+                <div id="powerResults"></div>
+            </center>
+
+
+
+            <script type="text/javascript">
+
+                //replace URL with the URL to your Power Automate flow.  
+                var url = 'https://YOURURL&SystemRecordId=[[S1:member_id]]';
+
+
+
+
+                $.get(url, function (data, status) {
+                    document.getElementById("loader").style.display = "none";
+                    document.getElementById("standBy").style.display = "none";
+                    document.getElementById("powerResults").innerHTML = data;
+                });
+
+
+
+            </script>
+
+        </convio:then>
+    </convio:when>
+    <convio:otherwise title="Empty"> You're not logged in or this user is not yet processed in our system.
+    </convio:otherwise>
+</convio:choose>

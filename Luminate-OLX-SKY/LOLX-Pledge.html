@@ -1,0 +1,66 @@
+<!--
+    This example covers embedding an Online Express Donation Form in a Luminate Online PageBuilder Page and using S-Tags to pre-fill key information such as Name, Email, and Address.  This works with both manual login and email auto-login and mimics the experience of donating through a native Luminate Online Donation Form.  
+
+    Key use case: "Bill Me Later" Pledge Form that sends the pledge into Raiser's Edge by way of the Online Express Plug-in.  
+
+    REQUIRED: Embed code for a Configured Online Express Donation Form, such as one setup for only "Bill Me Later" pledges.  
+
+-->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    /* If using the optional Luminate Online Member ID Gift Attribute, use this code to
+    hide the Giving Preferences section.  If part of the section is still needed, replace it with 
+    corresponding CSS */
+    div[class="BBFormSection BBFormSectionAttributes BBFormSectionGiftAttributes"] {
+        display: none !important;
+    }
+</style>
+<h1 style="text-align: center;">[[S1:first_name:Welcome]], Pledge Today!</h1>
+
+<center>
+
+    <!-- Begin YOUR OLX Form Embed Code -->
+    <div id="bbox-root"></div>
+    <script type="text/javascript">
+        window.bboxInit = function () {
+            bbox.showForm('FORM IDENTIFIER');
+
+        };
+        (function () {
+            var e = document.createElement('script'); e.async = false;
+            e.src = 'https://bbox.blackbaudhosting.com/webforms/bbox-min.js';
+            document.getElementsByTagName('head')[0].appendChild(e);
+        }());
+
+    </script>
+    <!-- End YOUR OLX Form Embed Code -->
+</center>
+
+
+<script>
+    /* The below periodically checks to see when the OLX form (or specifically, the submit button) has been rendered to then go through and fill out the rest. */
+
+    var checkExist = setInterval(function () {
+        if ($('#bboxdonation_btnSubmit').length) {
+
+            //Put Auto-fill/replacement items here
+            $('#bboxdonation_giftattributes_ctl00_txtAttrib').val('[[S1: member_id]]');
+            $('#bboxdonation_billing_txtFirstName').val('[[S1:first_name]]');
+            $('#bboxdonation_billing_txtLastName').val('[[S1:last_name]]');
+            $('#bboxdonation_billing_txtEmail').val('[[S1:primary_email]]');
+
+            var HomeAddress = '[[S1:home_street1]]\n[[S1:home_street2]]\n[[S1:home_street3]]';
+            //Confirmed blank lines for empty street2/3 won't update RE Constituent Record
+
+            $('#bboxdonation_billing_billingAddress_txtAddress').val(HomeAddress);
+            $('#bboxdonation_billing_billingAddress_txtCity').val('[[S1:home_city]]');
+            $('#bboxdonation_billing_billingAddress_ddState').val('[[S1:home_stateprov]]');
+            $('#bboxdonation_billing_billingAddress_txtZip').val('[[S1:home_zip]]');
+
+
+            clearInterval(checkExist);
+        }
+    }, 100); // check every 100ms
+</script>

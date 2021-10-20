@@ -1,0 +1,859 @@
+<style>
+    @font-face {
+        font-family: "Blackbaud Sans";
+        font-style: normal;
+        font-weight: 400;
+        src: url("https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans.woff") format("woff");
+    }
+    
+    @font-face {
+        font-family: "Blackbaud Sans";
+        font-style: normal;
+        font-weight: 600;
+        src: url("https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-semi-bold.woff") format("woff");
+    }
+    
+    @font-face {
+        font-family: "Blackbaud Sans";
+        font-style: normal;
+        font-weight: 700;
+        src: url("https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-bold.woff") format("woff");
+    }
+    
+    @font-face {
+        font-family: "Blackbaud Sans";
+        font-style: italic;
+        font-weight: 400;
+        src: url("https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-italic.woff") format("woff");
+    }
+    
+    @font-face {
+        font-family: "Blackbaud Sans";
+        font-style: normal;
+        font-weight: 300;
+        src: url("https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-light.woff") format("woff");
+    }
+    
+    @font-face {
+        font-family: "Blackbaud Sans";
+        font-style: normal;
+        font-weight: 100;
+        src: url("https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-thin.woff") format("woff");
+    }
+    
+    @font-face {
+        font-family: "Blackbaud Sans Condensed";
+        font-style: normal;
+        font-weight: 300;
+        src: url("https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-condensed-light.woff") format("woff");
+    }
+    
+    @font-face {
+        font-family: "Blackbaud Sans Condensed";
+        font-style: normal;
+        font-weight: 600;
+        src: url("https://sky.blackbaudcdn.net/skyux-fonts/1.0.1/blackbaud-sans-condensed-semi-bold.woff") format("woff");
+    }
+    
+    body,
+    form,
+    html {
+        font-size: 15px;
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+    }
+    
+    body {
+        background-color: #ffffff;
+        color: #212327;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: 400;
+        line-height: 1.1;
+    }
+    
+    h2 {
+        font-size: 26px;
+        font-weight: 300;
+    }
+    
+    h3 {
+        font-size: 19px;
+        color: #686c73;
+    }
+    
+    h4 {
+        font-size: 14px;
+    }
+    
+    h5 {
+        font-size: 12px;
+    }
+    
+    h6 {
+        font-size: 10px;
+    }
+    
+    h4,
+    h5,
+    h6 {
+        font-weight: 600;
+    }
+    
+    h1 {
+        font-size: 34px;
+        font-weight: 300;
+    }
+    
+    [hidden] {
+        display: none !important;
+    }
+    
+    a {
+        color: #0974a1;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: #065171;
+        text-decoration: underline;
+    }
+    
+    .sky-pull-right {
+        float: right;
+    }
+    
+    .sky-list-unstyled {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .sky-list-unstyled li {
+        padding-bottom: 5px;
+    }
+    
+    mark.sky-highlight-mark {
+        background-color: #fbb034;
+        color: #212327;
+    }
+    
+    .sky-rounded-corners {
+        border-radius: 3px;
+    }
+    
+    .sky-rounded-circle {
+        border-radius: 50%;
+    }
+    
+    .sky-shadow {
+        box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, 0.3);
+    }
+    
+    .sky-field-status-active {
+        box-shadow: 0 0 8px rgba(0, 180, 241, 0.6);
+        border: 1px solid #00b4f1;
+        outline: none;
+    }
+    
+    .sky-field-status-invalid {
+        box-shadow: 0 0 8px rgba(239, 64, 68, 0.6);
+        border: 1px solid #ef4044;
+        outline: none;
+    }
+    
+    .sky-field-status-success {
+        box-shadow: 0 0 8px rgba(114, 191, 68, 0.6);
+        border: 1px solid #72bf44;
+        outline: none;
+    }
+    
+    .sky-page-heading {
+        font-family: "Blackbaud Sans Condensed", "Helvetica Neue Condensed", "Arial Narrow";
+        color: #212327;
+        font-weight: 300;
+        font-size: 34px;
+    }
+    
+    .sky-section-heading {
+        font-family: "Blackbaud Sans Condensed", "Helvetica Neue Condensed", "Arial Narrow";
+        color: #212327;
+        font-weight: 300;
+        font-size: 26px;
+    }
+    
+    .sky-subsection-heading {
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #686c73;
+        font-weight: 300;
+        font-size: 19px;
+    }
+    
+    .sky-headline {
+        font-family: "Blackbaud Sans Condensed", "Helvetica Neue Condensed", "Arial Narrow";
+        color: #212327;
+        font-weight: 600;
+        font-size: 22px;
+    }
+    
+    .sky-emphasized {
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #212327;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    
+    .sky-deemphasized {
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #686c73;
+        font-weight: 400;
+        font-size: 15px;
+        font-style: italic;
+    }
+    
+    .sky-field-label,
+    th {
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #686c73;
+        font-weight: 400;
+        font-size: 15px;
+    }
+    
+    .sky-text-info {
+        color: #212327;
+    }
+    
+    .sky-text-info:before {
+        content: "&#61546;";
+        font-family: FontAwesome;
+        margin-right: 5px;
+        color: #00b4f1;
+    }
+    
+    .sky-text-success {
+        color: #212327;
+    }
+    
+    .sky-text-success:before {
+        content: "&#61452;";
+        font-family: FontAwesome;
+        margin-right: 5px;
+        color: #72bf44;
+    }
+    
+    .sky-text-warning {
+        color: #212327;
+    }
+    
+    .sky-text-warning:before {
+        content: "&#61553;";
+        font-family: FontAwesome;
+        margin-right: 5px;
+        color: #fbb034;
+    }
+    
+    .sky-text-danger {
+        color: #212327;
+    }
+    
+    .sky-text-danger:before {
+        content: "&#61553;";
+        font-family: FontAwesome;
+        margin-right: 5px;
+        color: #ef4044;
+    }
+    
+    .sky-font-body-default {
+        font-size: 15px;
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #212327;
+    }
+    
+    .sky-font-body-sm {
+        font-size: 13px;
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #212327;
+    }
+    
+    .sky-font-body-lg {
+        font-size: 16px;
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #212327;
+    }
+    
+    .sky-font-field-label {
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #686c73;
+        font-weight: 400;
+        font-size: 15px;
+    }
+    
+    .sky-font-deemphasized {
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #686c73;
+        font-weight: 400;
+        font-size: 15px;
+        font-style: italic;
+    }
+    
+    .sky-font-emphasized {
+        font-weight: 600;
+    }
+    
+    .sky-font-heading-1 {
+        font-family: "Blackbaud Sans Condensed", "Helvetica Neue Condensed", "Arial Narrow";
+        color: #212327;
+        font-weight: 300;
+        font-size: 34px;
+    }
+    
+    .sky-font-heading-2 {
+        font-family: "Blackbaud Sans Condensed", "Helvetica Neue Condensed", "Arial Narrow";
+        color: #212327;
+        font-weight: 300;
+        font-size: 26px;
+    }
+    
+    .sky-font-heading-3 {
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #686c73;
+        font-weight: 300;
+        font-size: 19px;
+    }
+    
+    .sky-font-heading-4 {
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #212327;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    
+    .sky-font-heading-5 {
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #686c73;
+        font-weight: 400;
+        font-size: 15px;
+    }
+    
+    .sky-font-display-1 {
+        font-family: "Blackbaud Sans Condensed", "Helvetica Neue Condensed", "Arial Narrow";
+        color: #212327;
+        font-weight: 300;
+        font-size: 34px;
+    }
+    
+    .sky-font-display-2 {
+        font-family: "Blackbaud Sans Condensed", "Helvetica Neue Condensed", "Arial Narrow";
+        color: #212327;
+        font-weight: 300;
+        font-size: 26px;
+    }
+    
+    .sky-font-display-3 {
+        font-family: "Blackbaud Sans Condensed", "Helvetica Neue Condensed", "Arial Narrow";
+        color: #212327;
+        font-weight: 600;
+        font-size: 22px;
+    }
+    
+    .sky-font-display-4 {
+        font-family: "Blackbaud Sans", "Helvetica Neue", Arial, sans-serif;
+        color: #212327;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    
+    .sky-screen-reader-only {
+        width: 0;
+        height: 0;
+        padding: 0;
+        opacity: 0;
+        position: absolute;
+        margin: -1px;
+        border: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        outline: none;
+        white-space: nowrap;
+    }
+    
+    .sky-grid {
+        position: relative;
+        display: block
+    }
+    
+    .sky-grid-table-container {
+        overflow: auto
+    }
+    
+    .sky-grid-table,
+    table {
+        position: relative;
+        table-layout: fixed;
+        border-collapse: collapse;
+        margin: 0;
+        font-size: 15px;
+        min-width: 100%
+    }
+    
+    .sky-grid-table.sky-grid-fit {
+        max-width: 100%;
+        width: 100%
+    }
+    
+    .sky-grid-tbody,
+    tbody {
+        background-color: #fff
+    }
+    
+    .sky-grid-row,
+    tr {
+        border-bottom: 1px dotted #cdcfd2
+    }
+    
+    .sky-grid-row:nth-child(odd),
+    tr:nth-child(odd) {
+        background-color: #fbfbfb
+    }
+    
+    .sky-grid-row.sky-grid-row-highlight {
+        border-top: 1px solid #0974a1;
+        box-shadow: 0 0 0 3px inset #0974a1
+    }
+    
+    .sky-grid-row .sky-grid-cell,
+    tr,
+    td {
+        padding: 0;
+        min-width: 10px
+    }
+    
+    .sky-grid-heading,
+    thead,
+    th {
+        position: relative;
+        border-top: 1px solid #cdcfd2;
+        border-bottom: 1px solid #cdcfd2;
+        border-left: 1px solid #cdcfd2;
+        border-right: 0 solid #cdcfd2;
+        padding: 0;
+        cursor: pointer;
+        background-color: #fff;
+        overflow: visible;
+        background-clip: padding-box;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none
+    }
+    
+    .sky-grid-heading:first-child,
+    th:first-child {
+        border-left: 1px solid transparent
+    }
+    
+    .sky-grid-heading.sky-grid-header-dragging {
+        background-color: #eeeeef
+    }
+    
+    .sky-grid-heading.sky-grid-column-alignment-center .sky-grid-heading-sort,
+    .sky-grid-heading.sky-grid-column-alignment-left .sky-grid-heading-sort {
+        width: 14px
+    }
+    
+    .sky-grid-heading.sky-grid-column-alignment-center .sky-grid-help-inline-sort-hidden,
+    .sky-grid-heading.sky-grid-column-alignment-left .sky-grid-help-inline-sort-hidden {
+        margin-left: -14px;
+        margin-right: 14px
+    }
+    
+    .sky-grid-heading.sky-grid-column-alignment-right .sky-grid-header-caret-hidden-spacing {
+        padding-left: 14px
+    }
+    
+    .sky-grid-heading.sky-grid-column-alignment-right .sky-grid-heading-sort-visible {
+        width: 14px
+    }
+    
+    .sky-grid-heading div {
+        padding: 8px
+    }
+    
+    .sky-grid-heading .overflow {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        min-width: 100%
+    }
+    
+    .sky-grid-heading .sky-grid-column-input-aria-only {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        height: 100%;
+        width: 5px;
+        position: absolute;
+        display: block;
+        top: 0;
+        bottom: 0;
+        right: 0
+    }
+    
+    .sky-grid-heading .sky-grid-column-input-aria-only::-moz-range-track {
+        background: 0 0
+    }
+    
+    .sky-grid-heading .sky-grid-column-input-aria-only::-moz-range-thumb {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 0;
+        height: 0;
+        border-radius: 0;
+        border: 0;
+        background: 0 0;
+        display: none
+    }
+    
+    .sky-grid-heading .sky-grid-column-input-aria-only::-ms-thumb {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 0;
+        height: 0;
+        border-radius: 0;
+        border: 0;
+        background: 0 0;
+        display: none
+    }
+    
+    .sky-grid-heading .sky-grid-column-input-aria-only::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 0;
+        height: 0;
+        border-radius: 0;
+        border: 0;
+        background: 0 0;
+        display: none
+    }
+    
+    .sky-grid-heading .sky-grid-column-input-aria-only:focus {
+        background-color: #00b4f1
+    }
+    
+    .sky-grid-column-alignment-left,
+    th {
+        text-align: left
+    }
+    
+    .sky-grid-column-alignment-center {
+        text-align: center
+    }
+    
+    .sky-grid-column-alignment-right {
+        text-align: right
+    }
+    
+    .sky-grid-multiselect-cell {
+        padding: 0;
+        text-align: center
+    }
+    
+    .sky-grid-multiselect-cell .sky-switch-control {
+        margin: 0 auto
+    }
+    
+    th.sky-grid-multiselect-cell {
+        cursor: default
+    }
+    
+    th.sky-grid-multiselect-cell .screen-reader-only {
+        width: 0;
+        height: 0;
+        padding: 0;
+        opacity: 0;
+        position: absolute;
+        margin: -1px;
+        border: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        outline: 0;
+        white-space: nowrap
+    }
+    
+    @-moz-document url-prefix() {
+        .sky-grid-multiselect-row td {
+            border-left: 0 solid transparent;
+            border-right: 0 solid transparent
+        }
+    }
+    
+    .sky-grid-multiselect-row:hover {
+        background-color: #e9e4f1
+    }
+    
+    .sky-grid-multiselect-row:hover:nth-child(odd) {
+        background: #e9e4f1
+    }
+    
+    .sky-grid-multiselect-selected-row {
+        background: #f1eef6;
+        border-top: 1px solid #dadbf6;
+        border-bottom: 1px solid #dadbf6
+    }
+    
+    .sky-grid-multiselect-selected-row:nth-child(odd) {
+        background: #f1eef6
+    }
+    
+    .sky-grid-has-toolbar .sky-grid-heading {
+        border-top-width: 0
+    }
+    
+    .sky-grid-heading-sort.sky-grid-heading-sort-hidden {
+        visibility: hidden
+    }
+    
+    .sky-grid-heading-sort.sky-grid-heading-sort-visible {
+        visibility: visible;
+        padding-left: 5px
+    }
+    
+    .sky-grid-resize-handle {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 30px;
+        z-index: 2;
+        min-height: 20px;
+        height: 100%!important;
+        vertical-align: middle;
+        cursor: col-resize
+    }
+    
+    .sky-grid-resize-handle:hover::after {
+        background-color: #00b4f1
+    }
+    
+    .sky-grid-resize-handle:after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 5px;
+        height: 100%;
+        content: ""
+    }
+    
+    #sky-grid-resize-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        height: 100%;
+        width: 5px;
+        background: #00b4f1;
+        opacity: .6
+    }
+    
+    tr {
+        position: relative
+    }
+    
+    .sky-grid-top-scroll-container {
+        overflow: auto
+    }
+    
+    .sky-grid-top-scroll {
+        height: 1px
+    }
+    
+    .sky-wait-mask-loading-blocking {
+        margin: auto;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, .7);
+        z-index: 1000
+    }
+    
+    .sky-wait-mask-loading-fixed {
+        position: fixed
+    }
+    
+    .sky-wait {
+        width: 50px;
+        height: 50px;
+        margin-top: -25px;
+        margin-left: -25px;
+        position: absolute;
+        top: 50%;
+        left: 50%
+    }
+    
+    .sky-wait-mask-loading-non-blocking {
+        bottom: 0
+    }
+    
+    .sky-wait-mask-loading-non-blocking .sky-wait {
+        top: auto;
+        right: auto;
+        bottom: 0;
+        left: 0;
+        margin-left: auto;
+        margin-right: auto
+    }
+    
+    .sky-wait-double-bounce1,
+    .sky-wait-double-bounce2 {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #72bf44;
+        opacity: .6;
+        position: absolute;
+        top: 0;
+        left: 0;
+        -webkit-animation: 2s ease-in-out infinite sk-bounce;
+        animation: 2s ease-in-out infinite sk-bounce
+    }
+    
+    .sky-wait-double-bounce2 {
+        -webkit-animation-delay: -1s;
+        animation-delay: -1s
+    }
+    
+    @-webkit-keyframes sk-bounce {
+        0%,
+        100% {
+            -webkit-transform: scale(0)
+        }
+        50% {
+            -webkit-transform: scale(1)
+        }
+    }
+    
+    @keyframes sk-bounce {
+        0%,
+        100% {
+            transform: scale(0);
+            -webkit-transform: scale(0)
+        }
+        50% {
+            transform: scale(1);
+            -webkit-transform: scale(1)
+        }
+    }
+    
+    .sky-wait-container.sky-wait-active {
+        position: relative
+    }
+    /* the following I couldn't figure out where they were being called from, so put them in manually */
+    
+    th,
+    td {
+        padding-bottom: 8px;
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-top: 8px;
+        text-align: left;
+        box-sizing: border-box;
+    }
+    
+    table {
+        box-sizing: border box;
+    }
+</style>
+<script type="text/javascript" src="https://sky.blackbaudcdn.net/static/sky-addin-client/1.0.15/sky-addin-client.umd.min.js">
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+<script type="text/javascript">
+    /* "Wrapper" for Power Automate based LO SKY Add-ins for showing LO specific data in RENXT.  Not using Power Apps due to styling limitations.    
+                     Expected Paramaters:
+                        whichtile - Which Tile to run
+                        tileheight - The height of the tile
+                     */
+
+
+
+    (function() {
+
+        //Let's pull in the paramaters
+
+        var urlParams = new URLSearchParams(window.location.search);
+        var whichtile = urlParams.get('whichtile');
+        var tileheight = urlParams.get('tileheight');
+
+        //if height is not defined, let's set it to 500
+        if (tileheight == "") {
+            tileheight = 500;
+        }
+
+        //Let's define the flow URLs
+        var LOConstituentStatsURL = '';
+        var TREventStatsURL = '';
+
+
+        // Add-in code goes here
+
+        // BBSkyAddinClient is global here.
+        var client = new BBSkyAddinClient.AddinClient({
+            callbacks: {
+                init: function(args) {
+
+                    // perform any initialization needed for the add-in
+
+                    console.log("The tile selected is: " + whichtile);
+                    switch (whichtile) {
+                        case "teamraisereventstats":
+                            var url = TREventStatsURL + '&SystemRecordId=' + args.context.recordId;
+                            var tilename = "TeamRaiser Event Stats";
+                            break;
+                        case "constituentstats":
+                            var url = LOConstituentStatsURL + '&SystemRecordId=' + args.context.recordId;
+                            var tilename = "Luminate Stats";
+                            break;
+                        default:
+                            break;
+                    }
+
+                    $.get(url, function(data, status) {
+                        document.getElementById("powerResults").innerHTML = data;
+                        document.getElementById("contentLoading").outerHTML = "";
+                    });
+
+                    // when the tile is ready to be shown, inform the host page
+                    args.ready({
+                        showUI: true,
+                        title: tilename + ' (Custom)'
+                    });
+                    //                   };
+                }
+            }
+        });
+
+    }());
+</script>
+<div class="sky-wait-container" id="contentLoading">
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <div class="sky-wait-mask sky-wait-mask-loading-blocking" aria-label="Loading. Please wait.">
+        <div class="sky-wait">
+            <div class="sky-wait-double-bounce1"></div>
+            <div class="sky-wait-double-bounce2"></div>
+        </div>
+    </div>
+</div>
+<div id="powerResults"></div>

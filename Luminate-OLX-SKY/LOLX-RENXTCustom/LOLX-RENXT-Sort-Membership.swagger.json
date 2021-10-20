@@ -1,0 +1,1398 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "LOLX-RENXTConnector-ListGiftsSort-Membership",
+    "description": "UNSUPPORTED Blackbaud Raiser's Edge NXT Connector focused on ListGifts Sort and Memberships to support blended Luminate Online + Online Express Scenarios. Use ONLY for ListGifts and Membership.  Use Official Connector for everything else. ",
+    "x-ms-api-annotation": {
+      "status": "Preview"
+    }
+  },
+  "host": "api.sky.blackbaud.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/fundraising/v1/funds": {
+      "get": {
+        "operationId": "ListFunds",
+        "summary": "List funds",
+        "description": "Returns a list of funds.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Represents the number of records to return. The default is 500. The maximum is 5000.",
+            "type": "integer",
+            "x-ms-summary": "Limit"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Represents the number of records to skip. For use with pagination.",
+            "type": "integer",
+            "x-ms-summary": "Offset"
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "description": "Include inactive funds?",
+            "type": "boolean",
+            "x-ms-summary": "Include inactive?",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "name": "date_added",
+            "in": "query",
+            "description": "Filter the results to funds created on or after the specified date (ex: '2020-09-18T04:13:56Z').",
+            "type": "string",
+            "format": "date-time",
+            "x-ms-summary": "Added on or after",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "name": "last_modified",
+            "in": "query",
+            "description": "Filter the results to funds modified on or after the specified date (ex: '2020-09-18T04:13:56Z').",
+            "type": "string",
+            "format": "date-time",
+            "x-ms-summary": "Modified on or after",
+            "x-ms-visibility": "advanced"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds.",
+            "schema": {
+              "$ref": "#/definitions/FundraisingApi.ApiCollectionOfFundRead"
+            }
+          },
+          "400": {
+            "description": "Returned when the specified request parameters are not in the appropriate format."
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to view the funds."
+          }
+        }
+      }
+    },
+    "/fundraising/v1/funds/{fund_id}": {
+      "get": {
+        "operationId": "GetFund",
+        "summary": "Get a fund",
+        "description": "Returns information about a fund.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fund_id",
+            "in": "path",
+            "description": "The system record ID of the fund to get.",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Fund ID",
+            "x-ms-url-encoding": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds.",
+            "schema": {
+              "$ref": "#/definitions/FundraisingApi.FundRead"
+            }
+          },
+          "400": {
+            "description": "Returned when the specified fund ID in the request URL is not in the appropriate format."
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to view the fund."
+          },
+          "404": {
+            "description": "Returned when the specified fund is not found."
+          }
+        }
+      }
+    },
+    "/gift/v1/gifts": {
+      "get": {
+        "operationId": "ListGifts",
+        "summary": "List gifts",
+        "description": "Returns a list of gifts.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "list_id",
+            "in": "query",
+            "description": "Defines a list identifier used to filter the set of gifts to those included in the specified list. If this value is set, other specified filters will be ignored.",
+            "type": "string",
+            "x-ms-summary": "List",
+            "x-ms-dynamic-values": {
+              "operationId": "ListLists",
+              "value-collection": "value",
+              "value-path": "id",
+              "value-title": "name",
+              "parameters": {
+                "list_type": "Gift"
+              }
+            },
+            "x-ms-dynamic-list": {
+              "operationId": "ListLists",
+              "itemsPath": "value",
+              "itemValuePath": "id",
+              "itemTitlePath": "name",
+              "parameters": {
+                "list_type": {
+                  "value": "Gift"
+                }
+              }
+            }
+          },
+          {
+            "name": "gift_type",
+            "in": "query",
+            "description": "Represents a comma-separated list of gift types to filter the results. For example, \"MatchingGiftPledge,RecurringGift\" returns only gifts of type MatchingGiftPledge or RecurringGift.",
+            "type": "string",
+            "x-ms-summary": "Type"
+          },
+          {
+            "name": "constituent_id",
+            "in": "query",
+            "description": "Represents a comma-separated list of constituent identifiers to filter the results. For example, \"280,1232\" returns only gifts from constituent 280 or constituent 1232.",
+            "type": "string",
+            "x-ms-summary": "Constituent ID"
+          },
+          {
+            "name": "campaign_id",
+            "in": "query",
+            "description": "Represents a comma-separated list of campaign identifiers to filter the results. For example, \"506,918\" returns only gifts to campaign 506 or campaign 918.",
+            "type": "string",
+            "x-ms-summary": "Campaign ID"
+          },
+          {
+            "name": "fund_id",
+            "in": "query",
+            "description": "Represents a comma-separated list of fund identifiers to filter the results. For example, \"506,918\" returns only gifts to fund 506 or fund 918.",
+            "type": "string",
+            "x-ms-summary": "Fund ID"
+          },
+          {
+            "name": "appeal_id",
+            "in": "query",
+            "description": "Represents a comma-separated list of appeal identifiers to filter the results. For example, \"506,918\" returns only gifts to appeal 506 or appeal 918.",
+            "type": "string",
+            "x-ms-summary": "Appeal ID"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Represents the number of records to return. The default is 500. The maximum is 5000.",
+            "type": "integer",
+            "format": "int32",
+            "x-ms-summary": "Limit"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Represents the number of records to skip. For use with pagination.",
+            "type": "integer",
+            "format": "int32",
+            "x-ms-summary": "Offset"
+          },
+          {
+            "name": "start_gift_date",
+            "in": "query",
+            "description": "Represents a filter for gifts with a gift date on or after the specified date (ex: '2020-09-18T04:13:56Z').",
+            "type": "string",
+            "format": "date-time",
+            "x-ms-summary": "Start gift date",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "name": "end_gift_date",
+            "in": "query",
+            "description": "Represents a filter for gifts with a gift date on or before the specified date (ex: '2020-09-18T04:13:56Z').",
+            "type": "string",
+            "format": "date-time",
+            "x-ms-summary": "End gift date",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "name": "start_gift_amount",
+            "in": "query",
+            "description": "Represents a filter for gifts with an amount greater than or equal to the specified amount.",
+            "type": "number",
+            "format": "double",
+            "x-ms-summary": "Start gift amount",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "name": "end_gift_amount",
+            "in": "query",
+            "description": "Represents a filter for gifts with an amount less than or equal to the specified amount.",
+            "type": "number",
+            "format": "double",
+            "x-ms-summary": "End gift amount",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "name": "post_status",
+            "in": "query",
+            "description": "Represents a comma-separated list of gift post statuses to filter the results. For example, \"DoNotPost,Posted\" returns only gifts that are marked as DoNotPost or Posted.",
+            "type": "string",
+            "x-ms-summary": "Post status",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "name": "receipt_status",
+            "in": "query",
+            "description": "Represents a comma-separated list of gift receipt statuses to filter the results. For example, \"DoNotReceipt,Receipted\" returns only gifts that are marked as DoNotReceipt or Receipted.",
+            "type": "string",
+            "x-ms-summary": "Receipt status",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "name": "acknowledgement_status",
+            "in": "query",
+            "description": "Represents a comma-separated list of gift acknowledgement statuses to filter the results. For example, \"DoNotAcknowledge,Acknowledged\" returns only gifts that are marked as DoNotAcknowledge or Acknowledged.",
+            "type": "string",
+            "x-ms-summary": "Acknowledgement status",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "name": "date_added",
+            "in": "query",
+            "description": "Filter the results to gifts created on or after the specified date (ex: '2020-09-18T04:13:56Z').",
+            "type": "string",
+            "format": "date-time",
+            "x-ms-summary": "Added on or after",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "name": "last_modified",
+            "in": "query",
+            "description": "Filter the results to gifts modified on or after the specified date (ex: '2020-09-18T04:13:56Z').",
+            "type": "string",
+            "format": "date-time",
+            "x-ms-summary": "Modified on or after",
+            "x-ms-visibility": "advanced"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Represents a list of fields to sort the results by. Returns a list that sorts gifts based on the supplied fields. Results are in ascending order by default, and a \"-\" sign denotes descending order. For example, \"sort=date_added,-date\" sorts gifts by the \"date_added\" field in ascending order and then by the \"gift date\" field in descending order. If only the date_modified field or only the date_added field is provided, then this adds the sort_token parameter to the next_link URL to ensure that gifts are stably sorted.",
+            "type": "string",
+            "x-ms-summary": "Sort by"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds.",
+            "schema": {
+              "$ref": "#/definitions/GiftApi.ApiCollectionOfGiftRead"
+            }
+          },
+          "400": {
+            "description": "Returned when the specified request parameters are not in the appropriate format."
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to view the gifts."
+          }
+        }
+      }
+    },
+    "/gift/v1/gifts/{gift_id}": {
+      "get": {
+        "operationId": "GetGift",
+        "summary": "Get a gift",
+        "description": "Returns information about a gift.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "gift_id",
+            "in": "path",
+            "description": "The system record ID of the gift to get.",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Gift ID",
+            "x-ms-url-encoding": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds.",
+            "schema": {
+              "$ref": "#/definitions/GiftApi.GiftRead"
+            }
+          },
+          "400": {
+            "description": "Returned when the specified gift ID in the request URL is not in the appropriate format."
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to view the gift."
+          },
+          "404": {
+            "description": "Returned when the specified gift is not found."
+          }
+        }
+      }
+    },
+    "/list/v1/lists": {
+      "get": {
+        "operationId": "ListLists",
+        "summary": "List lists",
+        "description": "Get a list of lists.",
+        "x-ms-visibility": "internal",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "list_type",
+            "in": "query",
+            "description": "The type of list to return.",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "List type",
+            "default": "Constituent",
+            "enum": [
+              "Constituent",
+              "Gift",
+              "Action",
+              "Opportunity"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds.",
+            "schema": {
+              "$ref": "#/definitions/ListApi.ApiCollectionOfList"
+            }
+          },
+          "400": {
+            "description": "Returned when the specified request parameters are not in the appropriate format."
+          }
+        }
+      }
+    },
+    "/powerautomateui/v1/dynamicvalues": {
+      "get": {
+        "operationId": "GetDynamicValues",
+        "summary": "Get dynamic values",
+        "description": "List dynamic values.",
+        "x-ms-visibility": "internal",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api",
+            "in": "query",
+            "description": "The underlying SKY API containing the route that will be used to populate the dynamic values list.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "constituent",
+              "gift",
+              "fundraising",
+              "opportunity"
+            ]
+          },
+          {
+            "name": "route",
+            "in": "query",
+            "description": "The route within the specified SKY API to call to produce the values for the dynamic list.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds.",
+            "schema": {
+              "$ref": "#/definitions/PowerAutomateUIApi.DynamicValuesCollection"
+            }
+          }
+        }
+      }
+    },
+    "/powerautomateui/v1/dynamicvalues/customfields": {
+      "get": {
+        "operationId": "GetCustomFieldCodeTableDynamicValues",
+        "summary": "Get custom field code table dynamic values",
+        "description": "List custom field code table dynamic values.",
+        "x-ms-visibility": "internal",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api",
+            "in": "query",
+            "description": "The underlying SKY API containing the route that will be used to populate the dynamic values list.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "constituent",
+              "gift",
+              "fundraising",
+              "opportunity"
+            ]
+          },
+          {
+            "name": "custom_field_type",
+            "in": "query",
+            "description": "The type of entity that owns the custom field.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "actions",
+              "constituents",
+              "appeals",
+              "campaigns",
+              "funds",
+              "gifts",
+              "opportunities"
+            ]
+          },
+          {
+            "name": "category_name",
+            "in": "query",
+            "description": "The custom field category.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds.",
+            "schema": {
+              "$ref": "#/definitions/PowerAutomateUIApi.DynamicValuesCollection"
+            }
+          }
+        }
+      }
+    },
+    "/powerautomateui/v1/dynamicproperties/customfields": {
+      "get": {
+        "operationId": "GetCustomFieldDynamicProperties",
+        "summary": "Get custom field dynamic properties",
+        "description": "List custom field dynamic properties.",
+        "x-ms-visibility": "internal",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api",
+            "in": "query",
+            "description": "The underlying SKY API containing the endpoint that will be used to fetch the custom field category definition.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "constituent",
+              "gift",
+              "fundraising",
+              "opportunity"
+            ]
+          },
+          {
+            "name": "custom_field_type",
+            "in": "query",
+            "description": "The type of entity that owns the custom field.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "actions",
+              "constituents",
+              "appeals",
+              "campaigns",
+              "funds",
+              "gifts",
+              "opportunities"
+            ]
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "The custom field category.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds.",
+            "schema": {
+              "$ref": "#/definitions/PowerAutomateUIApi.DynamicProperties"
+            }
+          }
+        }
+      }
+    },
+    "/powerautomateui/v1/dynamicproperties/ratings": {
+      "get": {
+        "operationId": "GetRatingDynamicProperties",
+        "summary": "Get rating category dynamic properties",
+        "description": "List rating category dynamic properties.",
+        "x-ms-visibility": "internal",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "source_name",
+            "in": "query",
+            "description": "The rating source.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "The custom field category.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds.",
+            "schema": {
+              "$ref": "#/definitions/PowerAutomateUIApi.DynamicProperties"
+            }
+          }
+        }
+      }
+    },
+    "/constituent/v1/constituents/{constituent_id}/memberships": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "default",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "format": "int32",
+                  "description": "count"
+                },
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "id"
+                      },
+                      "category": {
+                        "type": "string",
+                        "description": "category"
+                      },
+                      "constituent_id": {
+                        "type": "string",
+                        "description": "constituent_id"
+                      },
+                      "dues": {
+                        "type": "object",
+                        "properties": {
+                          "value": {
+                            "type": "number",
+                            "format": "double",
+                            "description": "dues_value"
+                          }
+                        },
+                        "description": "dues"
+                      },
+                      "expires": {
+                        "type": "string",
+                        "description": "expires"
+                      },
+                      "joined": {
+                        "type": "string",
+                        "description": "joined"
+                      },
+                      "members": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "description": "id"
+                            },
+                            "constituent_id": {
+                              "type": "string",
+                              "description": "constituent_id"
+                            },
+                            "primary": {
+                              "type": "boolean",
+                              "description": "primary"
+                            }
+                          }
+                        },
+                        "description": "members"
+                      },
+                      "program": {
+                        "type": "string",
+                        "description": "program"
+                      },
+                      "standing": {
+                        "type": "string",
+                        "description": "standing"
+                      },
+                      "subcategory": {
+                        "type": "string",
+                        "description": "subcategory"
+                      }
+                    }
+                  },
+                  "description": "value"
+                }
+              }
+            }
+          }
+        },
+        "summary": "List memberships",
+        "description": "Lists the memberships for a constituent.",
+        "operationId": "ListMemberships",
+        "parameters": [
+          {
+            "name": "constituent_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ConstituentID"
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "FundraisingApi.ApiCollectionOfFundRead": {
+      "type": "object",
+      "description": "Funds",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of items available for retrieval into the collection after applying any request parameters. The limit and offset parameters do not affect the count, but to facilitate paging, they may affect the number of items in the value result set.",
+          "x-ms-summary": "Count"
+        },
+        "value": {
+          "type": "array",
+          "description": "The set of items included in the response. This may be a subset of the items in the collection.",
+          "items": {
+            "$ref": "#/definitions/FundraisingApi.FundRead"
+          }
+        }
+      }
+    },
+    "FundraisingApi.FundRead": {
+      "type": "object",
+      "description": "Fund",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The system record ID of the fund.",
+          "x-ms-summary": "ID"
+        },
+        "category": {
+          "type": "string",
+          "description": "The category of the fund.",
+          "x-ms-summary": "Category"
+        },
+        "date_added": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date when the fund was created.",
+          "x-ms-summary": "Date added"
+        },
+        "date_modified": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date when the fund was last modified.",
+          "x-ms-summary": "Date modified"
+        },
+        "description": {
+          "type": "string",
+          "description": "The display name of the fund.",
+          "x-ms-summary": "Description"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The end date of the fund.",
+          "x-ms-summary": "End date"
+        },
+        "goal": {
+          "type": "object",
+          "description": "The monetary goal associated with the fund.",
+          "x-ms-summary": "Goal",
+          "properties": {
+            "value": {
+              "format": "double",
+              "description": "The monetary value.",
+              "type": "number"
+            }
+          }
+        },
+        "inactive": {
+          "type": "boolean",
+          "description": "Is the fund inactive (meaning, the current date is after any start date and before any end date)?",
+          "x-ms-summary": "Inactive?"
+        },
+        "lookup_id": {
+          "type": "string",
+          "description": "The user-defined identifier for the fund.",
+          "x-ms-summary": "Lookup ID"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The start date of the fund.",
+          "x-ms-summary": "Start date"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of the fund.",
+          "x-ms-summary": "Type"
+        }
+      }
+    },
+    "GiftApi.AcknowledgementRead": {
+      "type": "object",
+      "description": "Acknowledgement",
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date associated with the acknowledgement.",
+          "x-ms-summary": "date"
+        },
+        "letter": {
+          "type": "string",
+          "description": "The letter associated with the acknowledgement.",
+          "x-ms-summary": "letter"
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the acknowledgement. Available values are: ACKNOWLEDGED, NEEDSACKNOWLEDGEMENT, and DONOTACKNOWLEDGE.",
+          "x-ms-summary": "status"
+        }
+      }
+    },
+    "GiftApi.ApiCollectionOfGiftRead": {
+      "type": "object",
+      "description": "Gifts",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of items available for retrieval into the collection after applying any request parameters. The limit and offset parameters do not affect the count, but to facilitate paging, they may affect the number of items in the value result set.",
+          "x-ms-summary": "Count"
+        },
+        "value": {
+          "type": "array",
+          "description": "The set of items included in the response. This may be a subset of the items in the collection.",
+          "items": {
+            "$ref": "#/definitions/GiftApi.GiftRead"
+          }
+        }
+      }
+    },
+    "GiftApi.GiftFundraiserRead": {
+      "type": "object",
+      "description": "Gift fundraiser",
+      "properties": {
+        "amount": {
+          "type": "object",
+          "description": "The amount credited to the fundraiser for the gift.",
+          "x-ms-summary": "amount",
+          "properties": {
+            "value": {
+              "type": "number",
+              "format": "double",
+              "description": "The monetary value.",
+              "x-ms-summary": "value"
+            }
+          }
+        },
+        "constituent_id": {
+          "type": "string",
+          "description": "The constituent system record ID for the fundraiser associated with the gift.",
+          "x-ms-summary": "fundraiser ID"
+        }
+      }
+    },
+    "GiftApi.GiftRead": {
+      "type": "object",
+      "description": "Gift",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The system record ID of the gift.",
+          "x-ms-summary": "ID"
+        },
+        "constituent_id": {
+          "type": "string",
+          "description": "The system record ID of the constituent associated with the gift.",
+          "x-ms-summary": "Constituent ID"
+        },
+        "type": {
+          "type": "string",
+          "description": "The gift type.",
+          "x-ms-summary": "Type"
+        },
+        "subtype": {
+          "type": "string",
+          "description": "The subtype of the gift.",
+          "x-ms-summary": "Subtype"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The gift date.",
+          "x-ms-summary": "Date"
+        },
+        "amount": {
+          "type": "object",
+          "description": "The monetary amount of the gift.",
+          "x-ms-summary": "Amount",
+          "properties": {
+            "value": {
+              "type": "number",
+              "format": "double",
+              "description": "The monetary value.",
+              "x-ms-summary": "value"
+            }
+          }
+        },
+        "balance": {
+          "type": "object",
+          "description": "The balance remaining on the gift.",
+          "x-ms-summary": "Balance",
+          "properties": {
+            "value": {
+              "type": "number",
+              "format": "double",
+              "description": "The monetary value.",
+              "x-ms-summary": "value"
+            }
+          }
+        },
+        "batch_number": {
+          "type": "string",
+          "description": "The batch number associated with this gift.",
+          "x-ms-summary": "Batch number"
+        },
+        "gift_status": {
+          "type": "string",
+          "description": "The status of the gift.",
+          "x-ms-summary": "Status"
+        },
+        "is_anonymous": {
+          "type": "boolean",
+          "description": "Is the gift anonymous?",
+          "x-ms-summary": "Anonymous?"
+        },
+        "constituency": {
+          "type": "string",
+          "description": "The constituency of the gift.",
+          "x-ms-summary": "Constituency"
+        },
+        "lookup_id": {
+          "type": "string",
+          "description": "The user-defined identifier for the gift.",
+          "x-ms-summary": "Lookup ID"
+        },
+        "origin": {
+          "type": "string",
+          "description": "The origin of the gift.",
+          "x-ms-summary": "Origin"
+        },
+        "post_status": {
+          "type": "string",
+          "description": "The general ledger post status of the gift. Available values are Posted, NotPosted, and DoNotPost. When post_status is set to DoNotPost>, post_date should be null. When it is set to NotPosted, post_date is required but remains editable. When it is set to Posted, post_date is required and is no longer editable.",
+          "x-ms-summary": "Post status"
+        },
+        "post_date": {
+          "type": "string",
+          "format": "date-time",
+          "x-ms-summary": "Post date",
+          "description": "The date that the gift was posted to general ledger."
+        },
+        "reference": {
+          "type": "string",
+          "description": "Notes to track special details about a gift such as the motivation behind it or a detailed description of a gift-in-kind.",
+          "x-ms-summary": "Reference"
+        },
+        "recurring_gift_status_date": {
+          "type": "object",
+          "description": "The date that the gift status was last modified.",
+          "x-ms-summary": "Recurring gift date",
+          "properties": {
+            "d": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The day in the fuzzy date.",
+              "x-ms-summary": "day"
+            },
+            "m": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The month in the fuzzy date.",
+              "x-ms-summary": "month"
+            },
+            "y": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The year in the fuzzy date.",
+              "x-ms-summary": "year"
+            }
+          }
+        },
+        "recurring_gift_schedule": {
+          "type": "object",
+          "description": "The recurring gift schedule.",
+          "x-ms-summary": "Recurring gift schedule",
+          "properties": {
+            "frequency": {
+              "type": "string",
+              "description": "Installment frequency of the recurring gift to view. Available values are WEEKLY, EVERY_TWO_WEEKS, EVERY_FOUR_WEEKS, MONTHLY, QUARTERLY, ANNUALLY.",
+              "x-ms-summary": "frequency"
+            },
+            "start_date": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Date the recurring gift should start.",
+              "x-ms-summary": "start"
+            },
+            "end_date": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Date the recurring gift should end.",
+              "x-ms-summary": "end"
+            }
+          }
+        },
+        "gift_aid_amount": {
+          "type": "object",
+          "description": "This computed field calculates the total qualified amount of tax reclaimed from Gift Aid across all gift_splits for this gift. For the UK only.",
+          "x-ms-summary": "Gift aid amount",
+          "properties": {
+            "value": {
+              "type": "number",
+              "format": "double",
+              "description": "The monetary value.",
+              "x-ms-summary": "value"
+            }
+          }
+        },
+        "gift_aid_qualification_status": {
+          "type": "string",
+          "description": "This computed field determines the Gift Aid qualification status based on tax declaration information and the database format. Available values are: Qualified, NotQualified, and PartlyQualified. For the UK only.",
+          "x-ms-summary": "Gift aid qualification status"
+        },
+        "gift_splits": {
+          "type": "array",
+          "description": "The set of gift splits associated with the gift.",
+          "x-ms-summary": "Gift splits",
+          "items": {
+            "$ref": "#/definitions/GiftApi.GiftSplitRead"
+          }
+        },
+        "fundraisers": {
+          "type": "array",
+          "description": "The set of fundraisers who receive credit for the gift.",
+          "x-ms-summary": "Fundraisers",
+          "items": {
+            "$ref": "#/definitions/GiftApi.GiftFundraiserRead"
+          }
+        },
+        "soft_credits": {
+          "type": "array",
+          "description": "The set of soft credits associated with the gift.",
+          "x-ms-summary": "Soft credits",
+          "items": {
+            "$ref": "#/definitions/GiftApi.SoftCreditRead"
+          }
+        },
+        "receipts": {
+          "type": "array",
+          "description": "The set of receipts associated with the gift.",
+          "x-ms-summary": "Receipts",
+          "items": {
+            "$ref": "#/definitions/GiftApi.ReceiptRead"
+          }
+        },
+        "acknowledgements": {
+          "type": "array",
+          "description": "The set of acknowledgements associated with the gift.",
+          "x-ms-summary": "Acknowledgements",
+          "items": {
+            "$ref": "#/definitions/GiftApi.AcknowledgementRead"
+          }
+        },
+        "payments": {
+          "type": "array",
+          "description": "The payments on the gift.",
+          "x-ms-summary": "Payments",
+          "items": {
+            "$ref": "#/definitions/GiftApi.PaymentRead"
+          }
+        },
+        "date_added": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date when the gift was created.",
+          "x-ms-summary": "Date added"
+        },
+        "date_modified": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date when the gift was last modified.",
+          "x-ms-summary": "Date modified"
+        }
+      }
+    },
+    "GiftApi.ReceiptRead": {
+      "type": "object",
+      "description": "Receipt",
+      "properties": {
+        "amount": {
+          "type": "object",
+          "description": "The amount of the receipt.",
+          "x-ms-summary": "amount",
+          "properties": {
+            "value": {
+              "type": "number",
+              "format": "double",
+              "description": "The monetary value.",
+              "x-ms-summary": "value"
+            }
+          }
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date on the receipt.",
+          "x-ms-summary": "date"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of the receipt.",
+          "x-ms-summary": "number"
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the receipt. Available values are: RECEIPTED, NEEDSRECEIPT, and DONOTRECEIPT.",
+          "x-ms-summary": "status"
+        }
+      }
+    },
+    "GiftApi.GiftSplitRead": {
+      "type": "object",
+      "description": "Gift split",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The system record ID of the gift split.",
+          "x-ms-summary": "ID"
+        },
+        "amount": {
+          "type": "object",
+          "description": "The amount of the gift split.",
+          "x-ms-summary": "amount",
+          "properties": {
+            "value": {
+              "type": "number",
+              "format": "double",
+              "description": "The monetary value.",
+              "x-ms-summary": "value"
+            }
+          }
+        },
+        "appeal_id": {
+          "type": "string",
+          "description": "The system record ID of the appeal associated with the gift split.",
+          "x-ms-summary": "appeal ID"
+        },
+        "campaign_id": {
+          "type": "string",
+          "description": "The system record ID of the campaign associated with the gift split.",
+          "x-ms-summary": "campaign ID"
+        },
+        "fund_id": {
+          "type": "string",
+          "description": "The system record ID of the fund associated with the gift split.",
+          "x-ms-summary": "fund ID"
+        },
+        "gift_aid_amount": {
+          "type": "object",
+          "description": "The amount of tax reclaimed from gift aid for this gift split. For the UK only.",
+          "x-ms-summary": "gift aid amount",
+          "properties": {
+            "value": {
+              "type": "number",
+              "format": "double",
+              "description": "The monetary value.",
+              "x-ms-summary": "value"
+            }
+          }
+        },
+        "gift_aid_qualification_status": {
+          "type": "string",
+          "description": "The gift aid qualification status of the gift split. Available values are: Qualified, and NotQualified. For the UK only.",
+          "x-ms-summary": "gift aid qualification status"
+        },
+        "package_id": {
+          "type": "string",
+          "description": "The system record ID of the package associated with the gift split.",
+          "x-ms-summary": "package ID"
+        }
+      }
+    },
+    "GiftApi.PaymentRead": {
+      "type": "object",
+      "description": "Payment",
+      "properties": {
+        "account_token": {
+          "type": "string",
+          "description": "The tokenized account information (e.g. credit card) from the external payment provider. Only applies to payment methods of \"CreditCard\" and \"DirectDebit\".",
+          "x-ms-summary": "account token"
+        },
+        "bbps_configuration_id": {
+          "type": "string",
+          "description": "The BBPS configuration ID. Only applies to payment methods of \"CreditCard\" and \"DirectDebit\".",
+          "x-ms-summary": "BBPS configuration ID"
+        },
+        "bbps_transaction_id": {
+          "type": "string",
+          "description": "The BBPS transaction ID. Only applies to payment methods of \"CreditCard\" and \"DirectDebit\".",
+          "x-ms-summary": "BBPS transaction ID"
+        },
+        "check_date": {
+          "type": "object",
+          "description": "The check date. Only applies to payment method of \"PersonalCheck\".",
+          "x-ms-summary": "check date",
+          "properties": {
+            "d": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The day in the fuzzy date.",
+              "x-ms-summary": "day"
+            },
+            "m": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The month in the fuzzy date.",
+              "x-ms-summary": "month"
+            },
+            "y": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The year in the fuzzy date.",
+              "x-ms-summary": "year"
+            }
+          }
+        },
+        "check_number": {
+          "type": "string",
+          "description": "The check number. Only applies to payment method of \"PersonalCheck\".",
+          "x-ms-summary": "check number"
+        },
+        "checkout_transaction_id": {
+          "type": "string",
+          "description": "The checkout transaction ID. Only applies to payment methods of \"CreditCard\" and \"DirectDebit\".",
+          "x-ms-summary": "checkout transaction ID"
+        },
+        "payment_method": {
+          "type": "string",
+          "description": "The payment method. Available values are listed below.",
+          "x-ms-summary": "payment method"
+        },
+        "reference": {
+          "type": "string",
+          "description": "The reference. Only applies to payment method of \"Other\".",
+          "x-ms-summary": "reference"
+        },
+        "reference_date": {
+          "type": "object",
+          "description": "The reference date. Only applies to payment method of \"Other\".",
+          "x-ms-summary": "reference date",
+          "properties": {
+            "d": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The day in the fuzzy date.",
+              "x-ms-summary": "day"
+            },
+            "m": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The month in the fuzzy date.",
+              "x-ms-summary": "month"
+            },
+            "y": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The year in the fuzzy date.",
+              "x-ms-summary": "year"
+            }
+          }
+        }
+      }
+    },
+    "GiftApi.SoftCreditRead": {
+      "type": "object",
+      "description": "Soft credit",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The system record ID of the soft credit.",
+          "x-ms-summary": "ID"
+        },
+        "amount": {
+          "type": "object",
+          "description": "The amount of the soft credit.",
+          "x-ms-summary": "amount",
+          "properties": {
+            "value": {
+              "type": "number",
+              "format": "double",
+              "description": "The monetary value.",
+              "x-ms-summary": "value"
+            }
+          }
+        },
+        "constituent_id": {
+          "type": "string",
+          "description": "The system record ID of the constituent associated with the soft credit.",
+          "x-ms-summary": "constituent ID"
+        },
+        "gift_id": {
+          "type": "string",
+          "description": "The system record ID of the gift associated with the soft credit.",
+          "x-ms-summary": "gift ID"
+        }
+      }
+    },
+    "ListApi.ApiCollectionOfList": {
+      "type": "object",
+      "description": "Lists",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The total number of lists in the set.",
+          "x-ms-summary": "Count"
+        },
+        "value": {
+          "type": "array",
+          "description": "The set of items included in the response.",
+          "items": {
+            "$ref": "#/definitions/ListApi.ApiList"
+          }
+        }
+      }
+    },
+    "ListApi.ApiList": {
+      "type": "object",
+      "description": "List",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The system record ID for the list."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the list."
+        }
+      }
+    },
+    "PowerAutomateUIApi.DynamicValue": {
+      "type": "object",
+      "description": "A single dynamic value item",
+      "properties": {
+        "item": {
+          "type": "string",
+          "description": "The dynamic value item."
+        }
+      }
+    },
+    "PowerAutomateUIApi.DynamicValuesCollection": {
+      "type": "object",
+      "description": "A collection of objects for use with dynamic values.",
+      "properties": {
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of items in the list."
+        },
+        "value": {
+          "type": "array",
+          "description": "The set of objects for use with dynamic values.",
+          "items": {
+            "$ref": "#/definitions/PowerAutomateUIApi.DynamicValue"
+          }
+        }
+      }
+    },
+    "PowerAutomateUIApi.DynamicProperties": {
+      "type": "object",
+      "description": "Defines some (but potentially not all) dynamic OpenApi metadata properties needed for a custom field.",
+      "properties": {
+        "items": {
+          "type": "object",
+          "description": "The OpenApi properties for the custom field value.",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "The OpenApi type."
+            },
+            "format": {
+              "type": "string",
+              "description": "The OpenApi format."
+            },
+            "description": {
+              "type": "string",
+              "description": "The OpenApi description."
+            }
+          }
+        }
+      }
+    }
+  },
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "oauth2_auth": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://oauth2.sky.blackbaud.com/authorization",
+      "tokenUrl": "https://oauth2.sky.blackbaud.com/token",
+      "scopes": {}
+    }
+  },
+  "security": [
+    {
+      "oauth2_auth": []
+    }
+  ],
+  "tags": []
+}
