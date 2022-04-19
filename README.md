@@ -1,5 +1,5 @@
 # Blackbaud Customizations
-Here you will find examples to extend the capabilities of Blackbaud solutions various ways. 
+Here you will find examples to extend the capabilities of Blackbaud solutions in various ways. 
 
 ## Luminate SKY Addins
 
