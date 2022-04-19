@@ -180,7 +180,7 @@ This would be the areas that you would need to review and update as you create y
     <div class="sky-subsection-heading">A Heading</div>
 
 ```
-9. Devlopment tip
+9. Development tip
     * For the most part, the All-In One (AIO) flow needs to run from within Raiser's Edge NXT.  
     * While you're putting together your custom actions, create them in their own flow.  You can initialize the required _SystemRecordId_ variable at the top and pre-fill it with a test record.  The results will just show in the Flow, but this will give you an easier ability to test while you work.  
     * Once you have the steps completed, copy them to the AIO flow.  See discussion about [scopes](#scopes) above and an article first introducing the feature at https://powerautomate.microsoft.com/en-us/blog/introducing-clipboard-in-flow-designer-and-three-new-user-experience-updates/
