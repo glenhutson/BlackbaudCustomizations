@@ -114,7 +114,7 @@ The example flow contains a number of steps/action for your informational purpos
 13. Under the Add-ins tile, click the _Add_ button. 
 14. Under the _Add-in name_ field, put in a description that makes sense to you.  It can be the same thing you put in the _TileName_ step above, but doesn't have to be. 
 15. Under the _Add-in URL_, paste in the Web Address you copied from the _When a HTTP request is received_ step prior. 
-16.  Under _Extension point_, expland _Development Office_, and then _Constituents_, and select _Constituent Tile Dashboard_. 
+16.  Under _Extension point_, expand _Development Office_, and then _Constituents_, and select _Constituent Tile Dashboard_. 
 17. Click _Save_. 
 
 
