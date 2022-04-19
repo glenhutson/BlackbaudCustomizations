@@ -1,5 +1,5 @@
 # All In One SKY Add-In + Power Automate 
-This is a collection of one or more (depending on feedback) examples of creating SKY Add-ins without the need of an independant Single Page Application/SPA. See the individual folder(s) for more information. 
+This is a collection of one or more (depending on feedback) examples of creating SKY Add-ins without the need of an external Single Page Application/SPA. See the individual folder(s) for more information. 
 
 ## Existing Shortcuts
 * If your customization is utilizing a _Power App_, then you can use the pre-made [Power Apps Host SPA](https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/power-apps/power-app-addins) directly without needing to have that additional SPA / webpage. 
