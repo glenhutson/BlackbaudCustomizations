@@ -11,4 +11,4 @@ Add to / enhance features in Luminate Online such as Pledge Gifts, Pledge Paymen
  
 ## All-In-One SKY Add-ins + Power Automate
 
-Example(s) if incorporating SKY Add-in wiring + Power Automate actions in a single flow. 
+Example(s) of incorporating SKY Add-in wiring + Power Automate actions in a single flow. 
