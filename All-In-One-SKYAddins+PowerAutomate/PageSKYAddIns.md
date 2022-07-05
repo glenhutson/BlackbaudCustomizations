@@ -1,3 +1,7 @@
+
+# Page SKY Add-Ins
+Examples here may include the use of (Full) Page add-ins.  This goes into a high-level overview before diving into those.
+
 <!-- vscode-markdown-toc -->
 * [SKY Add-Ins and "All In One" Flows](#SKYAdd-InsandAllInOneFlows)
 * [The Page Host SPA - Basics](#ThePageHostSPA-Basics)
@@ -13,8 +17,6 @@
 	autoSave=false
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
-# Page SKY Add-Ins
-Examples here may include the use of (Full) Page add-ins.  This goes into a high-level overview before diving into those.
 
 ## <a name='SKYAdd-InsandAllInOneFlows'></a>SKY Add-Ins and "All In One" Flows
 If you have not done so already, please reivew the overall concept of [SKY Add-Ins and "All In One" Flows](https://github.com/glenhutson/BlackbaudCustomizations/tree/main/All-In-One-SKYAddins%2BPowerAutomate/Simple). That disucssion focuses on a Tile on an existing native page. 
