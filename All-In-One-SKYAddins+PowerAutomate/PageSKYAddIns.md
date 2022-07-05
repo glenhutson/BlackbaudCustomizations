@@ -1,21 +1,36 @@
+<!-- vscode-markdown-toc -->
+* [SKY Add-Ins and "All In One" Flows](#SKYAdd-InsandAllInOneFlows)
+* [The Page Host SPA - Basics](#ThePageHostSPA-Basics)
+* [Linking to a Page Add-in](#LinkingtoaPageAdd-in)
+* [Installation](#Installation)
+	* [Prerequisites](#Prerequisites)
+	* [Installation - Main Add-In](#Installation-MainAdd-In)
+	* [Installation - Link](#Installation-Link)
+* [A note about authorization / validation](#Anoteaboutauthorizationvalidation)
+
+<!-- vscode-markdown-toc-config
+	numbering=false
+	autoSave=false
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
 # Page SKY Add-Ins
 Examples here may include the use of (Full) Page add-ins.  This goes into a high-level overview before diving into those.
 
-## SKY Add-Ins and "All In One" Flows
+## <a name='SKYAdd-InsandAllInOneFlows'></a>SKY Add-Ins and "All In One" Flows
 If you have not done so already, please reivew the overall concept of [SKY Add-Ins and "All In One" Flows](https://github.com/glenhutson/BlackbaudCustomizations/tree/main/All-In-One-SKYAddins%2BPowerAutomate/Simple). That disucssion focuses on a Tile on an existing native page. 
 
-## The Page Host SPA - Basics
+## <a name='ThePageHostSPA-Basics'></a>The Page Host SPA - Basics
 Once understanding the concepts of a Tile SKY Add-In, the concept of a [Page Add-in](https://developer.blackbaud.com/skyapi/docs/addins/get-started/page-addins) is very similar.  Note that the difference between this and a modal is that with a page add-in, you continue to see the navigation / "omnibar" so that the add-in looks more like the rest of the system. Like a tile, it runs independantly from the host system (Raiser's Edge NXT, Financial Edge NXT, Church Management), but receives data from that host system in order to run. 
 
-## Linking to a Page Add-in
+## <a name='LinkingtoaPageAdd-in'></a>Linking to a Page Add-in
 The link to the [Page Add-in details](https://developer.blackbaud.com/skyapi/docs/addins/get-started/page-addins) includes discussion on how to navigate to these Page Add-ins.  In most cases, this includes creating a companion/second Add-in to surface a button on a record page or a link on the Home page.  
 
-## Installation 
+## <a name='Installation'></a>Installation 
 
-### Prerequisites
+### <a name='Prerequisites'></a>Prerequisites
 The Pre-Requisites for installing these SKY Add-Ins are the same as for the [Tile Add-Ins](https://github.com/glenhutson/BlackbaudCustomizations/blob/main/All-In-One-SKYAddins+PowerAutomate/Simple/README.md#prerequisites).  Note that if you already have an application setup for one or more SKY Add-Ins already, you can use that _same_ Application for additional Add-Ins.  It really depends on administrative preferences.  If you are creating a separate / first Application follow those setps listed and stop at step 5. 
 
-### Installation - Main Add-In
+### <a name='Installation-MainAdd-In'></a>Installation - Main Add-In
 1. Download the zip file located in the appropriate repository (These are versioned where "X" is the version number.) Do _not_ unzip the file (it should stay as one file).  
 2. Review the instructions at https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/basics/import-flows for Importing flows into your Power Automate account. Stop before the "Next Steps" section. 
 3. Edit the flow if it doesn't already take you to the editor. 
@@ -34,7 +49,7 @@ The Pre-Requisites for installing these SKY Add-Ins are the same as for the [Til
 16.  Under _Extension point_, expand _Navigation_ and select _Page (Preview)_. 
 17. Click _Save_, but don't leave the Application page yet. 
 
-### Installation - Link
+### <a name='Installation-Link'></a>Installation - Link
 These steps will create the link to your Page Add-In
 1. In the Application screen from above, under Add-ins, selcect "Add" (again). 
 2. Here, the _Add-in name_ won't matter as much, but it is suggested that it's named similar to the main Add-in.  If the main add-in is "My Widget", then name this one "My Widget - Button" (or "My Widget - Link"). 
@@ -57,5 +72,5 @@ These steps will create the link to your Page Add-In
 
 You should now see a link/button at the location indicated in the previous step pointing to the Page SKY Add-In you created. 
 
-## A note about authorization / validation
+## <a name='Anoteaboutauthorizationvalidation'></a>A note about authorization / validation
 Like the "All In One" Tile Add-Ins, these Page Add-ins also have a validation step to make sure the appropriate (or all) users accessing the system can get to these add-ins.  However, regardless of what you have in "Authorized Users", the links/buttons will appear to "all" users.  Validation will not happen until they click on that button/link.  If they're approved to access that Page SKY Add-in, then they'll be taken to it.  Otherwise, they'll see an "unauthorized" message. 
