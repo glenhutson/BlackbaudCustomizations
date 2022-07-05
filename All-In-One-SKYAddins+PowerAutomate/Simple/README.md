@@ -78,8 +78,8 @@ SKY Add-Ins are considered custom applications, so you'll need to register your 
 1. Go to the SKY Developer My applications page.
 2. Select Add.
 3. On the Add application screen, enter the following information for the fields:
-    * **Application name** – Simple Acknowledgement from Gift
-    * **Application details** – This Application invokes a Simple Acknowledgement workflow on Power Automate from the Gift record in Raiser’s Edge NXT
+    * **Application name** – All In One Flows (the same application can be used for multiple add-ins/flows, or you can create a separate one for each and label it accordingly)
+    * **Application details** – (If it's a 'generic' app to hold all your add-ins, state so here.  Otherwise, explain the purpose of the individual Application). 
     * **Which organization owns this app?** – All of your available Blackbaud organization associations appear. If your Blackbaud ID is associated with only one organization, we default in the name for you. However, you can change that to "Not owned by an organization," such as for testing purposes. If your Blackbaud ID is associated with more than one, select which one owns the application.
     * **Publisher** – Enter your organization's name.
     * **Application logo** - This field is not required, so you can skip adding a logo.
