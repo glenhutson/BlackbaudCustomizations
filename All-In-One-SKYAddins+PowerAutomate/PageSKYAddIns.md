@@ -19,7 +19,7 @@ Examples here may include the use of (Full) Page add-ins.  This goes into a high
 <!-- /vscode-markdown-toc -->
 
 ## <a name='SKYAdd-InsandAllInOneFlows'></a>SKY Add-Ins and "All In One" Flows
-If you have not done so already, please reivew the overall concept of [SKY Add-Ins and "All In One" Flows](https://github.com/glenhutson/BlackbaudCustomizations/tree/main/All-In-One-SKYAddins%2BPowerAutomate/Simple). That disucssion focuses on a Tile on an existing native page. 
+If you have not done so already, please reivew the overall concept of [SKY Add-Ins and "All In One" Flows](https://github.com/glenhutson/BlackbaudCustomizations/blob/main/All-In-One-SKYAddins%2BPowerAutomate/AllInOne-SKYAddIns-Background.md) and [Tile SKY Add-ins](https://github.com/glenhutson/BlackbaudCustomizations/blob/main/All-In-One-SKYAddins%2BPowerAutomate/TileSKYAddins.md).  
 
 ## <a name='ThePageHostSPA-Basics'></a>The Page Host SPA - Basics
 Once understanding the concepts of a Tile SKY Add-In, the concept of a [Page Add-in](https://developer.blackbaud.com/skyapi/docs/addins/get-started/page-addins) is very similar.  Note that the difference between this and a modal is that with a page add-in, you continue to see the navigation / "omnibar" so that the add-in looks more like the rest of the system. Like a tile, it runs independantly from the host system (Raiser's Edge NXT, Financial Edge NXT, Church Management), but receives data from that host system in order to run. 
@@ -30,7 +30,7 @@ The link to the [Page Add-in details](https://developer.blackbaud.com/skyapi/doc
 ## <a name='Installation'></a>Installation 
 
 ### <a name='Prerequisites'></a>Prerequisites
-The Pre-Requisites for installing these SKY Add-Ins are the same as for the [Tile Add-Ins](https://github.com/glenhutson/BlackbaudCustomizations/blob/main/All-In-One-SKYAddins+PowerAutomate/Simple/README.md#prerequisites).  Note that if you already have an application setup for one or more SKY Add-Ins already, you can use that _same_ Application for additional Add-Ins.  It really depends on administrative preferences.  If you are creating a separate / first Application follow those setps listed and stop at step 5. 
+The Pre-Requisites for installing these SKY Add-Ins are the same as for the [Tile Add-Ins](https://github.com/glenhutson/BlackbaudCustomizations/blob/main/All-In-One-SKYAddins%2BPowerAutomate/TileSKYAddins.md#Prerequisites).  Note that if you already have an application setup for one or more SKY Add-Ins already, you can use that _same_ Application for additional Add-Ins.  It really depends on administrative preferences.  If you are creating a separate / first Application follow those setps listed and stop at step 5. 
 
 ### <a name='Installation-MainAdd-In'></a>Installation - Main Add-In
 1. Download the zip file located in the appropriate repository (These are versioned where "X" is the version number.) Do _not_ unzip the file (it should stay as one file).  
