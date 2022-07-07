@@ -3,6 +3,7 @@
 <!-- vscode-markdown-toc -->
 * [Summary](#Summary)
 * [Installation](#Installation)
+* [Notes](#Notes)
 
 <!-- vscode-markdown-toc-config
 	numbering=false
@@ -16,7 +17,7 @@ Honor/Memorial information is currently managed through the Database View.  This
 ## <a name='Installation'></a>Installation
 See the [Tile SKY Add-ins](https://github.com/glenhutson/BlackbaudCustomizations/blob/main/All-In-One-SKYAddins%2BPowerAutomate/TileSKYAddins.md) documentation on how to install this Add-in.  The Extension Point for this will be _Development Office_ -> _Constituents_ -> _Constituent Tile Dashboard_ . 
 
-## Notes
+## <a name='Notes'></a>Notes
 1. There's currently not an efficient way to be able to show additional summary data (links to gifts, total amount, etc) at this time.  If/when additional options become available, it will be revisited. 
 2. See the [June 2022 Release Notes](https://developer.blackbaud.com/skyapi/support/changelog/power-platform#june-2022), specifically:
    ```
