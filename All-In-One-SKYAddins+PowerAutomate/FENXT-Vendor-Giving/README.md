@@ -33,7 +33,7 @@ This All-In-One flow creates a tile on a Vendor record in Financial Edge NXT to 
 To use this flow as-is, you will need to create a new _alias_ in _Raiser's Edge NXT_ called "FENXT ID" (though you can technically  name it whatever you want) that is filled in with "FENXT-[VendorSystemRecordId]" (that format is required) for each Vendor that has a record in both systems.  This is due to the specific fields that are available for searching in the Connector and Underlying API.  
 
 ## <a name='Installation'></a>Installation
-See the [Tile SKY Add-ins](https://github.com/glenhutson/BlackbaudCustomizations/blob/main/All-In-One-SKYAddins%2BPowerAutomate/TileSKYAddins.md) documentation on how to install this Add-in.  The Extension Point for this will be _Development Office_ -> _Constituents_ -> _Constituent Tile Dashboard_ . 
+See the [Tile SKY Add-ins](https://github.com/glenhutson/BlackbaudCustomizations/blob/main/All-In-One-SKYAddins%2BPowerAutomate/TileSKYAddins.md) documentation on how to install this Add-in.  The Extension Point for this will be _Financial Office_ -> _Payables_ -> _Vendors_ -> _Vendor Tile Dashboard_ . 
 
 > If your Raiser's Edge NXT and Financial Edge NXT is in the scenario that they are in different environments (when looking at the address bar when logged into each, the characters after "envid=" are different), you may have to create a new connection for the _Validate a user identity token_ action specifically for the environment your Financial Edge NXT is in.  To do this:
  1. Open up the _Switch - Which Function_ -> _Validate_ -> _Scope - Validation_ -> _Validate a user identity token_.  
