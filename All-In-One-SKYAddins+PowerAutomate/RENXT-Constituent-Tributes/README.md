@@ -1,4 +1,4 @@
-# RENXT Constituent Tile
+# RENXT Honor/Memorial Constituent Tile
 
 <!-- vscode-markdown-toc -->
 * [Summary](#Summary)
