@@ -6,6 +6,7 @@
 	* [Multiple Add-ins](#MultipleAdd-ins)
 * [A note about permissions](#Anoteaboutpermissions)
 * [To Dos](#ToDos)
+* [Updates](#Updates)
 
 <!-- vscode-markdown-toc-config
 	numbering=false
@@ -19,7 +20,7 @@ Raiser's Edge NXT Web View currently has no way to directly search for Campaigns
 ## <a name='Nuances:SearchversusFilterandWarning'></a>Nuances: Search versus Filter and Warning
 The Power Automate Connector simply has a "list" feature for CFAs without the ability to search on the typical criteria of (System) Record ID, Lookup ID, Description, and Catgory.  In order to achieve the ability to do this, all active records are first pulled in and then a table assembled.  
 
-You will then have the chance to _filter_ that table based on the above mentioned criteria.  If you have a lot of records (especially a lot of funds and/or appeals), the time it takes to do that inital load may stretch for a while.  For comparison, the test data set of ~50 funds takes about 20 seconds to load.  However, some of that is taken up by work that'll be the same amount of time regardless of the number of records.  
+You will then have the chance to _filter_ that table based on the above mentioned criteria.  If you have a lot of records (especially a lot of funds and/or appeals), the time it takes to do that inital load may stretch for a while.  ~~For comparison, the test data set of ~50 funds takes about 20 seconds to load.~~  V2 significantly loads up this process, now 10 seconds or less.  However, some of that is taken up by work that'll be the same amount of time regardless of the number of records.  
 
 If you have a lot of records, one option may be to split out this flow into two: one that runs nightly that generates and saves out the HTML tables and the "on-demand" one to pull in the results. 
 
@@ -68,6 +69,9 @@ Reiterating / Adding to the comments in the [Main PageSKYAddIns documentation](h
 
 ## <a name='ToDos'></a>To Dos
 These may or may not be addressed, but definitely already on the mind: 
-1. Find a way to speed up the load time
+1. ~~Find a way to speed up the load time~~ - **V2 speeds up load time**. 
 2. Reducing the number of SKY Add-Ins needed.  There are additional context features availble to Page Add-ins that could be leveraged.  
 3. Possibly move the links to a dedicated custom tile that then could be shown/hidden as needed to Authorized Users. 
+
+## <a name='Updates'></a>Updates
+* V2 - Tweak in JavaScript which means don't need to use the "Apply to Each" method for creating the Record table.  Now using the built-in "Create HTML Table" action which significantly speeds up the load time. 
