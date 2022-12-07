@@ -1,7 +1,7 @@
 # Raiser's Edge NXT Campaign / Fund / Appeal Search (er.. filter)
 <!-- vscode-markdown-toc -->
 * [Background](#Background)
-* [Nuances: Search versus Filter and Warning](#Nuances:SearchversusFilterandWarning)
+* [Nuances: Search versus Filter and Warning](#NuancesSearchversusFilterandWarning)
 * [Installation](#Installation)
 	* [Multiple Add-ins](#MultipleAdd-ins)
 * [A note about permissions](#Anoteaboutpermissions)
@@ -17,10 +17,10 @@
 ## <a name='Background'></a>Background
 Raiser's Edge NXT Web View currently has no way to directly search for Campaigns, Funds, and Appeals (or CFAs).  Each of these record pages are availble from an associated gift and dashboards, but there's no "listing" of those records.  This "All In One" flow provides for Campaign, Fund, and Appeal Search links from the Raiser's Edge NXT Home page and corresponding (Full) Page SKY Add-ins.  
 
-## <a name='Nuances:SearchversusFilterandWarning'></a>Nuances: Search versus Filter and Warning
+## <a name='NuancesSearchversusFilterandWarning'></a>Nuances: Search versus Filter and Warning
 The Power Automate Connector simply has a "list" feature for CFAs without the ability to search on the typical criteria of (System) Record ID, Lookup ID, Description, and Catgory.  In order to achieve the ability to do this, all active records are first pulled in and then a table assembled.  
 
-You will then have the chance to _filter_ that table based on the above mentioned criteria.  If you have a lot of records (especially a lot of funds and/or appeals), the time it takes to do that inital load may stretch for a while.  ~~For comparison, the test data set of ~50 funds takes about 20 seconds to load.~~  V2 significantly loads up this process, now 10 seconds or less.  However, some of that is taken up by work that'll be the same amount of time regardless of the number of records.  
+You will then have the chance to _filter_ that table based on the above mentioned criteria.  If you have a lot of records (especially a lot of funds and/or appeals), the time it takes to do that inital load may stretch for a while.  In V1, the test data set of ~50 funds takes about 20 seconds to load.  V2 significantly speeds up this process, now 10 seconds or less.  However, some of that is taken up by work that'll be the same amount of time regardless of the number of records.  
 
 If you have a lot of records, one option may be to split out this flow into two: one that runs nightly that generates and saves out the HTML tables and the "on-demand" one to pull in the results. 
 
