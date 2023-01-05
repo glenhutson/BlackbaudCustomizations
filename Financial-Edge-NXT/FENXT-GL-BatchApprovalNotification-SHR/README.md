@@ -18,7 +18,7 @@ An email to a designated recipent that contains a table with the following field
 * Modified - Combines the Date Modified and Modified By into one field
 
 ## Initial Setup
-After [importing the flow](https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/basics/import-flows), you will need to edit the following pieces:
+Download the .zip file in the files list above. After [importing the flow](https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/basics/import-flows), you will need to edit the following pieces:
 
 * Open the initial _Recurrence_ step and edit that to match when you would like the flow to periodically check the Batches. 
 * Open the "README" Section in the flow and follow the instructions. 
