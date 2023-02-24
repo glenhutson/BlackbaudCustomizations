@@ -25,7 +25,7 @@
 ## <a name='AboutthisGuide'></a>About this Guide
 This guide will walk you through the basics of adding Power Automate Facilitated content to Blackbaud CRM and Altru without the need of additional WebServers / SPAs.  This is meant for for mostly "view only" scenarios.  If you need more interaction, consider using Power Apps in addition to any Power Automate Flows. 
 
-> This is considered an "advanced" activity and assumes you've already had experience working with Power Automate and specificaly working with Blackbaud CRM in Power Automate.  For simplicity, this does not take advantage of a custom connector, but direct HTTP calls into the (pre-SKY)Blackbaud CRM ReST API.  
+> This is considered an "advanced" activity and assumes you've already had experience working with Power Automate.
 
 ## <a name='Disclaimer'></a>Disclaimer
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
