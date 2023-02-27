@@ -4,7 +4,7 @@ The examples found here focus on the SKY APIs for BBCRM and Altru released in 20
 > Note that for BBCRM Customers, you must be on Service Pack 33 and in Blackbaud Cloud Operations to take advantage of SKY APIs at this time. 
 
 ## A note about BBCRM and Altru using the Send HTTP Request Action
-The initial SKY APIs for BBCRM and Altru were developed at the same time.  As such, a majority are structured the same way, with only slight differences designating either BBCRM or Altu.  For example, to get information about an indivudation, the Request URL for "Get an Individual" in BBCRM is:
+The initial SKY APIs for BBCRM and Altru were developed at the same time.  As such, a majority are structured the same way, with only slight differences designating either BBCRM or Altu.  For example, to get information about an individual, the Request URL for "Get an Individual" in BBCRM is:
 
 ```
 https://api.sky.blackbaud.com/crm-conmg/individuals/{constituent_id}
