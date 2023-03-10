@@ -20,3 +20,7 @@ Financial Edge NXT specific examples
 ## BBCRM-Altru
 
 BBCRM and Altru examples utilizing the SKY APIs released beginning in February/March 2023.
+
+## Raiser's Edge NXT
+
+Raiser's Edge NXT-specific examples, added to their own directory as more products also adopt SKY API / SKY Add-ins .  See also the "All-In-One SKY Add-ins + Power Automate" folder for earlier examples.
