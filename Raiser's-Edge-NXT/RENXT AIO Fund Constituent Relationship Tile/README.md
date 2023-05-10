@@ -14,9 +14,9 @@ See the [Raiser's Edge NXT Readme](../README.md) for links discussing the variou
 ### Flow-specific installation instructions
 This requires setting up two tile add-ins, using the same URL generated in the _When a HTTP request is received_ for both with one difference for each. 
 
-* For the _Fund Constituent Relationships_ version (the one that will show on the Fund Record), set this up as a _Constituent Tile Dashboard_ Extenstion Point.  Paste in the URL from the When a HTTP request is received, and add `&recordType=fund` to the end.
+* For the _Fund Constituent Relationships_ version (the one that will show on the Fund Record), set this up as a _Fund Tile Dashboard_ Extenstion Point.  Paste in the URL from the When a HTTP request is received, and add `&recordType=fund` to the end.
 
-* For the _Constituent Fund Relationships_ version (the one that will show on the Constituent Record), set this up as a _Fund Tile Dashboard_ Extenstion Point.  Paste in the URL from the When a HTTP request is received, and add `&recordType=constituent` to the end. 
+* For the _Constituent Fund Relationships_ version (the one that will show on the Constituent Record), set this up as a _Constituent Tile Dashboard_ Extenstion Point.  Paste in the URL from the When a HTTP request is received, and add `&recordType=constituent` to the end. 
 
 ### Flow-specific considerations
 1. These involve actions that require that the user connecting this to Raiser's Edge NXT be an Environment Admin (see above link for more information). 
