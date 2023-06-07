@@ -1,0 +1,762 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Webhook",
+    "version": "v1",
+    "description": "This UNOFFICIAL connector provides Webhook capabilities for the SKY Developer platform."
+  },
+  "host": "api.sky.blackbaud.com",
+  "basePath": "/webhook/v1",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/subscriptions": {
+      "get": {
+        "description": "Returns a list of subscriptions for your application. These subscriptions are scoped to the Blackbaud Environment authorized by your SKY API access token.",
+        "operationId": "GetSubscriptionList",
+        "summary": "Get subscription list",
+        "tags": [
+          "Subscription"
+        ],
+        "produces": [
+          "application/json",
+          "application/problem+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds. The response body contains the list of subscriptions.",
+            "schema": {
+              "$ref": "#/definitions/Subscriptions"
+            },
+            "examples": {
+              "application/json": {
+                "value": [
+                  {
+                    "id": "eb42ba64-2712-4232-b69b-caed6b6d6fdd",
+                    "environment_id": "p-vnVAbDtfu0GyMqSDmG-_qw",
+                    "webhook_url": "https://example.org/skyapi/webhook/handler",
+                    "application_id": "90caa693-b36e-4eea-942d-fb813e36ceb7",
+                    "event_type": "com.blackbaud.constituent.email.change.v1",
+                    "provisioning_status": "Pending"
+                  },
+                  {
+                    "id": "259d1af0-6594-4f34-bb51-54bff66ec704",
+                    "environment_id": "p-vnVAbDtfu0GyMqSDmG-_qw",
+                    "webhook_url": "https://example.org/skyapi/webhook/handler2",
+                    "application_id": "90caa693-b36e-4eea-942d-fb813e36ceb7",
+                    "event_type": "com.blackbaud.constituent.email.change.v1",
+                    "provisioning_status": "Provisioned"
+                  }
+                ],
+                "count": 2
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when the specified request parameters are not provided.",
+            "schema": {
+              "$ref": "#/definitions/ModelValidationProblemDetails"
+            },
+            "examples": {
+              "application/problem+json": {
+                "type": "urn:blackbaud:model-validation-error",
+                "title": "One or more validation errors occurred.",
+                "status": 400,
+                "detail": "The date field is required.",
+                "trace_id": "0092384aa2c24842a550a0137bbf3172",
+                "span_id": "f7c9d108335d479588f5f165ca17a5e3"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a subscription in your application. This subscription is scoped to the Blackbaud Environment authorized by your SKY API access token.",
+        "operationId": "CreateSubscription",
+        "summary": "Create a subscription",
+        "tags": [
+          "Subscription"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionRequest",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/SubscriptionRequest"
+            },
+            "description": "The body of the request. Contains the details for a new subscription request."
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/problem+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds.",
+            "schema": {
+              "$ref": "#/definitions/SubscriptionCreated"
+            },
+            "examples": {
+              "application/json": {
+                "id": "eb42ba64-2712-4232-b69b-caed6b6d6fdd",
+                "provisioning_status": "Provisioning"
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when the specified request parameters are not provided.",
+            "schema": {
+              "$ref": "#/definitions/CreateSubscriptionBadRequestResponse"
+            },
+            "examples": {
+              "application/problem+json": {
+                "type": "urn:blackbaud:invalid-address-type",
+                "title": "One or more validation errors occurred.",
+                "status": 400,
+                "detail": "The type Home is not valid for this address.",
+                "values": {
+                  "type": "Home"
+                },
+                "trace_id": "0092384aa2c24842a550a0137bbf3172",
+                "span_id": "f7c9d108335d479588f5f165ca17a5e3"
+              }
+            }
+          },
+          "409": {
+            "description": "Returned when the subscription you want to create has already been created.",
+            "schema": {
+              "$ref": "#/definitions/ProblemDetails"
+            },
+            "examples": {
+              "application/problem+json": {
+                "type": "urn:blackbaud:conflict",
+                "title": "The request failed conflict validation.",
+                "status": 409,
+                "trace_id": "0092384aa2c24842a550a0137bbf3172",
+                "span_id": "f7c9d108335d479588f5f165ca17a5e3"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscription_id}": {
+      "get": {
+        "description": "Returns subscription information for a specific application and subscription ID. The subscription is scoped to the Blackbaud Environment authorized by your SKY API access token.",
+        "operationId": "GetSubscription",
+        "summary": "Get a subscription",
+        "tags": [
+          "Subscription"
+        ],
+        "parameters": [
+          {
+            "name": "subscription_id",
+            "in": "path",
+            "description": "If multiple of the same event type, get subscription list first and Enter Custom Value.",
+            "required": true,
+            "type": "string",
+            "x-ms-summary": "Event type to delete"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "application/problem+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds. The response body contains the subscription information.",
+            "schema": {
+              "$ref": "#/definitions/Subscription"
+            },
+            "examples": {
+              "application/json": {
+                "id": "eb42ba64-2712-4232-b69b-caed6b6d6fdd",
+                "environment_id": "p-vnVAbDtfu0GyMqSDmG-_qw",
+                "webhook_url": "https://example.org/skyapi/webhook/handler",
+                "application_id": "90caa693-b36e-4eea-942d-fb813e36ceb7",
+                "event_type": "com.blackbaud.constituent.email.change.v1",
+                "provisioning_status": "Pending"
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when the specified request parameters are not provided.",
+            "schema": {
+              "$ref": "#/definitions/GetSubscriptionBadRequestResponse"
+            },
+            "examples": {
+              "application/problem+json": {
+                "type": "urn:blackbaud:invalid-address-type",
+                "title": "One or more validation errors occurred.",
+                "status": 400,
+                "detail": "The type Home is not valid for this address.",
+                "values": {
+                  "type": "Home"
+                },
+                "trace_id": "0092384aa2c24842a550a0137bbf3172",
+                "span_id": "f7c9d108335d479588f5f165ca17a5e3"
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when no subscription exists in your application for the subscription ID provided.",
+            "schema": {
+              "$ref": "#/definitions/ProblemDetails"
+            },
+            "examples": {
+              "application/problem+json": {
+                "type": "urn:blackbaud:resource-not-found",
+                "title": "The requested resource could not be found.",
+                "status": 404,
+                "trace_id": "0092384aa2c24842a550a0137bbf3172",
+                "span_id": "f7c9d108335d479588f5f165ca17a5e3"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Removes a subscription in your application. The subscription removed is scoped to the Blackbaud Environment authorized by your SKY API access token.",
+        "operationId": "DeleteSubscription",
+        "summary": "Remove a subscription",
+        "tags": [
+          "Subscription"
+        ],
+        "parameters": [
+          {
+            "name": "subscription_id",
+            "in": "path",
+            "description": "If multiple of the same, use Enter Custom Value and put in the ID.",
+            "required": true,
+            "type": "string",
+            "x-ms-dynamic-values": {
+              "operationId": "GetSubscriptionList",
+              "value-path": "id",
+              "value-collection": "value",
+              "value-title": "event_type"
+            },
+            "x-ms-summary": "Subscription to delete"
+          }
+        ],
+        "produces": [
+          "application/problem+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the operation succeeds."
+          },
+          "400": {
+            "description": "Returned when the specified request parameters are not provided.",
+            "schema": {
+              "$ref": "#/definitions/DeleteSubscriptionBadRequestResponse"
+            },
+            "examples": {
+              "application/problem+json": {
+                "type": "urn:blackbaud:subscription-is-provisioning",
+                "title": "One or more validation errors occurred.",
+                "status": 400,
+                "detail": "This operation cannot be done while the subscription is Provisioning. Please wait for subscription to provision. If stuck, the subscription can be deleted after 30 minutes regardless of provisioning state."
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when no subscription exists in your application for the subscription ID provided.",
+            "schema": {
+              "$ref": "#/definitions/ProblemDetails"
+            },
+            "examples": {
+              "application/problem+json": {
+                "type": "urn:blackbaud:resource-not-found",
+                "title": "The requested resource could not be found.",
+                "status": 404,
+                "trace_id": "0092384aa2c24842a550a0137bbf3172",
+                "span_id": "f7c9d108335d479588f5f165ca17a5e3"
+              }
+            }
+          },
+          "409": {
+            "description": "Returned when the subscription's state doesn't allow it to be deleted.",
+            "schema": {
+              "$ref": "#/definitions/ProblemDetails"
+            },
+            "examples": {
+              "application/problem+json": {
+                "type": "urn:blackbaud:conflict",
+                "title": "The request failed conflict validation.",
+                "status": 409,
+                "trace_id": "0092384aa2c24842a550a0137bbf3172",
+                "span_id": "f7c9d108335d479588f5f165ca17a5e3"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/utilities/subscriptions/{subscription_id}/testpayload": {
+      "post": {
+        "description": "Sends a test event to your subscription's webhook URL. Use this event to verify that your subscription is configured correctly. This payload uses a special event type, 'com.blackbaud.utility.testpayload.v1', so that your webhook can identify the test.",
+        "operationId": "SendTestPayloadToSubscription",
+        "summary": "Create a subscription test payload",
+        "tags": [
+          "Utility"
+        ],
+        "parameters": [
+          {
+            "name": "subscription_id",
+            "in": "path",
+            "description": "The ID for the subscription.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/problem+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Returned when the webhook test payload is successfully delivered to the subscription webhook URL."
+          },
+          "400": {
+            "description": "Returned when the specified request parameters are not provided.",
+            "schema": {
+              "$ref": "#/definitions/SendTestPayloadToSubscriptionBadRequestResponse"
+            },
+            "examples": {
+              "application/problem+json": {
+                "type": "urn:blackbaud:webhook-event-invalid-status-code",
+                "title": "One or more validation errors occurred.",
+                "status": 400,
+                "detail": "Your webhook returned an invalid HTTP status code when sent the test event payload. Received status code: 400. Expected: 200 - 204."
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when no subscription exists in your application for the subscription ID provided. The subscription is scoped to the Blackbaud Environment authorized by your SKY API access token.",
+            "schema": {
+              "$ref": "#/definitions/ProblemDetails"
+            },
+            "examples": {
+              "application/problem+json": {
+                "type": "urn:blackbaud:resource-not-found",
+                "title": "The requested resource could not be found.",
+                "status": 404,
+                "trace_id": "0092384aa2c24842a550a0137bbf3172",
+                "span_id": "f7c9d108335d479588f5f165ca17a5e3"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateSubscriptionBadRequestResponse": {
+      "description": "A machine-readable format for specifying errors in HTTP API responses based on https://tools.ietf.org/html/rfc7807.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when dereferenced, it provide human-readable documentation for the problem type (e.g., using HTML [W3C.REC-html5-20141028]). When this member is not present, its value is assumed to be \"about:blank\".<br/><br/>Available values:<table><tr><th>type</th><th>detail</th></tr><tr><td>urn:blackbaud:model-validation-error</td><td>A model validation rule was violated, such as a missing required field.</td></tr><tr><td>urn:blackbaud:invalid-event-type</td><td>{0} is not a valid event type</td></tr><tr><td>urn:blackbaud:app-max-subscriptions-count</td><td>The application {0} is limited to {1} subscriptions per environment {2}</td></tr><tr><td>urn:blackbaud:webhook-url-invalid</td><td>The webhook URL is invalid</td></tr><tr><td>urn:blackbaud:webhook-url-invalid-format</td><td>The webhook URL is not properly formatted and fully qualified. The URL scheme (HTTPS) must be specified.</td></tr><tr><td>urn:blackbaud:webhook-url-invalid-schema</td><td>The webhook URL is not HTTPS</td></tr><tr><td>urn:blackbaud:webhook-url-handshake-missing-origin-header</td><td>Received an unexpected 'WebHook-Allowed-Origin' header value from your webhook URL when performing the CloudEvent's Abuse Protection handshake. The header must equal 'eventgrid.azure.net'. Review our Webhook API documentation to learn more. https://developer.blackbaud.com/skyapi/apis/webhook</td></tr><tr><td>urn:blackbaud:webhook-url-handshake-invalid-status-code</td><td>Received an invalid HTTPS status code from your webhook URL when performing the CloudEvent's Abuse Protection handshake with your webhook URL. Review our Webhook API documentation to learn more. https://developer.blackbaud.com/skyapi/apis/webhook</td></tr><tr><td>urn:blackbaud:webhook-url-unreachable</td><td>We were unable to reach the specified webhook URL. Please check the URL and try again.</td></tr></table>",
+          "type": "string"
+        },
+        "title": {
+          "description": "A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization (e.g., using proactive content negotiation; see [RFC7231], Section 3.4).",
+          "type": "string"
+        },
+        "status": {
+          "format": "int32",
+          "description": "The HTTP status code ([RFC7231], Section 6) generated by the origin server for this occurrence of the problem.",
+          "type": "integer"
+        },
+        "detail": {
+          "description": "A human-readable explanation specific to this occurrence of the problem.",
+          "type": "string"
+        },
+        "instance": {
+          "description": "A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced.",
+          "type": "string"
+        },
+        "trace_id": {
+          "description": "A request ID that can be provided to Blackbaud Support that may help with further troubleshooting.",
+          "type": "string"
+        },
+        "span_id": {
+          "description": "A request ID that can be provided to Blackbaud Support that may help with further troubleshooting.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": {},
+      "x-bb-error-types": [
+        "urn:blackbaud:model-validation-error",
+        "urn:blackbaud:invalid-event-type",
+        "urn:blackbaud:app-max-subscriptions-count",
+        "urn:blackbaud:webhook-url-invalid",
+        "urn:blackbaud:webhook-url-invalid-format",
+        "urn:blackbaud:webhook-url-invalid-schema",
+        "urn:blackbaud:webhook-url-handshake-missing-origin-header",
+        "urn:blackbaud:webhook-url-handshake-invalid-status-code",
+        "urn:blackbaud:webhook-url-unreachable"
+      ]
+    },
+    "DeleteSubscriptionBadRequestResponse": {
+      "description": "A machine-readable format for specifying errors in HTTP API responses based on https://tools.ietf.org/html/rfc7807.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when dereferenced, it provide human-readable documentation for the problem type (e.g., using HTML [W3C.REC-html5-20141028]). When this member is not present, its value is assumed to be \"about:blank\".<br/><br/>Available values:<table><tr><th>type</th><th>detail</th></tr><tr><td>urn:blackbaud:model-validation-error</td><td>A model validation rule was violated, such as a missing required field.</td></tr><tr><td>urn:blackbaud:subscription-is-provisioning</td><td>This operation cannot be done while the subscription is Provisioning. Please wait for subscription to provision. If stuck, the subscription can be deleted after 30 minutes regardless of provisioning state.</td></tr></table>",
+          "type": "string"
+        },
+        "title": {
+          "description": "A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization (e.g., using proactive content negotiation; see [RFC7231], Section 3.4).",
+          "type": "string"
+        },
+        "status": {
+          "format": "int32",
+          "description": "The HTTP status code ([RFC7231], Section 6) generated by the origin server for this occurrence of the problem.",
+          "type": "integer"
+        },
+        "detail": {
+          "description": "A human-readable explanation specific to this occurrence of the problem.",
+          "type": "string"
+        },
+        "instance": {
+          "description": "A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced.",
+          "type": "string"
+        },
+        "trace_id": {
+          "description": "A request ID that can be provided to Blackbaud Support that may help with further troubleshooting.",
+          "type": "string"
+        },
+        "span_id": {
+          "description": "A request ID that can be provided to Blackbaud Support that may help with further troubleshooting.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": {},
+      "x-bb-error-types": [
+        "urn:blackbaud:model-validation-error",
+        "urn:blackbaud:subscription-is-provisioning"
+      ]
+    },
+    "GetSubscriptionBadRequestResponse": {
+      "description": "A machine-readable format for specifying errors in HTTP API responses based on https://tools.ietf.org/html/rfc7807.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when dereferenced, it provide human-readable documentation for the problem type (e.g., using HTML [W3C.REC-html5-20141028]). When this member is not present, its value is assumed to be \"about:blank\".<br/><br/>Available values:<table><tr><th>type</th><th>detail</th></tr><tr><td>urn:blackbaud:model-validation-error</td><td>A model validation rule was violated, such as a missing required field.</td></tr><tr><td>urn:blackbaud:invalid-event-type</td><td>{0} is not a valid event type</td></tr></table>",
+          "type": "string"
+        },
+        "title": {
+          "description": "A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization (e.g., using proactive content negotiation; see [RFC7231], Section 3.4).",
+          "type": "string"
+        },
+        "status": {
+          "format": "int32",
+          "description": "The HTTP status code ([RFC7231], Section 6) generated by the origin server for this occurrence of the problem.",
+          "type": "integer"
+        },
+        "detail": {
+          "description": "A human-readable explanation specific to this occurrence of the problem.",
+          "type": "string"
+        },
+        "instance": {
+          "description": "A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced.",
+          "type": "string"
+        },
+        "trace_id": {
+          "description": "A request ID that can be provided to Blackbaud Support that may help with further troubleshooting.",
+          "type": "string"
+        },
+        "span_id": {
+          "description": "A request ID that can be provided to Blackbaud Support that may help with further troubleshooting.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": {},
+      "x-bb-error-types": [
+        "urn:blackbaud:model-validation-error",
+        "urn:blackbaud:invalid-event-type"
+      ]
+    },
+    "ModelValidationProblemDetails": {
+      "description": "A machine-readable format for specifying errors in HTTP API responses based on https://tools.ietf.org/html/rfc7807.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when dereferenced, it provide human-readable documentation for the problem type (e.g., using HTML [W3C.REC-html5-20141028]). When this member is not present, its value is assumed to be \"about:blank\".<br/><br/>Available values:<table><tr><th>type</th><th>detail</th></tr><tr><td>urn:blackbaud:model-validation-error</td><td>A model validation rule was violated, such as a missing required field.</td></tr></table>",
+          "type": "string"
+        },
+        "title": {
+          "description": "A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization (e.g., using proactive content negotiation; see [RFC7231], Section 3.4).",
+          "type": "string"
+        },
+        "status": {
+          "format": "int32",
+          "description": "The HTTP status code ([RFC7231], Section 6) generated by the origin server for this occurrence of the problem.",
+          "type": "integer"
+        },
+        "detail": {
+          "description": "A human-readable explanation specific to this occurrence of the problem.",
+          "type": "string"
+        },
+        "instance": {
+          "description": "A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced.",
+          "type": "string"
+        },
+        "trace_id": {
+          "description": "A request ID that can be provided to Blackbaud Support that may help with further troubleshooting.",
+          "type": "string"
+        },
+        "span_id": {
+          "description": "A request ID that can be provided to Blackbaud Support that may help with further troubleshooting.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": {},
+      "x-bb-error-types": [
+        "urn:blackbaud:model-validation-error"
+      ]
+    },
+    "ProblemDetails": {
+      "description": "A machine-readable format for specifying errors in HTTP API responses based on https://tools.ietf.org/html/rfc7807.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when dereferenced, it provide human-readable documentation for the problem type (e.g., using HTML [W3C.REC-html5-20141028]). When this member is not present, its value is assumed to be \"about:blank\".",
+          "type": "string"
+        },
+        "title": {
+          "description": "A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization (e.g., using proactive content negotiation; see [RFC7231], Section 3.4).",
+          "type": "string"
+        },
+        "status": {
+          "format": "int32",
+          "description": "The HTTP status code ([RFC7231], Section 6) generated by the origin server for this occurrence of the problem.",
+          "type": "integer"
+        },
+        "detail": {
+          "description": "A human-readable explanation specific to this occurrence of the problem.",
+          "type": "string"
+        },
+        "instance": {
+          "description": "A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced.",
+          "type": "string"
+        },
+        "trace_id": {
+          "description": "A request ID that can be provided to Blackbaud Support that may help with further troubleshooting.",
+          "type": "string"
+        },
+        "span_id": {
+          "description": "A request ID that can be provided to Blackbaud Support that may help with further troubleshooting.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "SendTestPayloadToSubscriptionBadRequestResponse": {
+      "description": "A machine-readable format for specifying errors in HTTP API responses based on https://tools.ietf.org/html/rfc7807.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "A URI reference [RFC3986] that identifies the problem type. This specification encourages that, when dereferenced, it provide human-readable documentation for the problem type (e.g., using HTML [W3C.REC-html5-20141028]). When this member is not present, its value is assumed to be \"about:blank\".<br/><br/>Available values:<table><tr><th>type</th><th>detail</th></tr><tr><td>urn:blackbaud:model-validation-error</td><td>A model validation rule was violated, such as a missing required field.</td></tr><tr><td>urn:blackbaud:webhook-url-unreachable</td><td>We were unable to reach the specified webhook URL. Please check the URL and try again.</td></tr><tr><td>urn:blackbaud:webhook-event-invalid-status-code</td><td>Your webhook returned an invalid HTTP status code when sent the test event payload. Valid status codes: 200 - 204.</td></tr><tr><td>urn:blackbaud:webhook-event-timeout</td><td>Your webhook failed to respond in 30 seconds to the test event payload. A webhook must respond to webhook events within 30 seconds. After 30 seconds, we will terminate the event request and retry later with exponential backoff (up to 9 times).</td></tr><tr><td>urn:blackbaud:webhook-event-terminated</td><td>The connection to your webhook was unexpectedly terminated during the request.</td></tr><tr><td>urn:blackbaud:subscription-not-provisioned</td><td>Only Provisioned subscriptions can be sent an event.</td></tr></table>",
+          "type": "string"
+        },
+        "title": {
+          "description": "A short, human-readable summary of the problem type. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization (e.g., using proactive content negotiation; see [RFC7231], Section 3.4).",
+          "type": "string"
+        },
+        "status": {
+          "format": "int32",
+          "description": "The HTTP status code ([RFC7231], Section 6) generated by the origin server for this occurrence of the problem.",
+          "type": "integer"
+        },
+        "detail": {
+          "description": "A human-readable explanation specific to this occurrence of the problem.",
+          "type": "string"
+        },
+        "instance": {
+          "description": "A URI reference that identifies the specific occurrence of the problem. It may or may not yield further information if dereferenced.",
+          "type": "string"
+        },
+        "trace_id": {
+          "description": "A request ID that can be provided to Blackbaud Support that may help with further troubleshooting.",
+          "type": "string"
+        },
+        "span_id": {
+          "description": "A request ID that can be provided to Blackbaud Support that may help with further troubleshooting.",
+          "type": "string"
+        }
+      },
+      "additionalProperties": {},
+      "x-bb-error-types": [
+        "urn:blackbaud:model-validation-error",
+        "urn:blackbaud:webhook-url-unreachable",
+        "urn:blackbaud:webhook-event-invalid-status-code",
+        "urn:blackbaud:webhook-event-timeout",
+        "urn:blackbaud:webhook-event-terminated",
+        "urn:blackbaud:subscription-not-provisioned"
+      ]
+    },
+    "Subscription": {
+      "description": "Webhook subscription",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Subscription ID",
+          "type": "string"
+        },
+        "environment_id": {
+          "description": "Environment ID",
+          "type": "string"
+        },
+        "webhook_url": {
+          "description": "Subscription webhook url",
+          "type": "string"
+        },
+        "application_id": {
+          "description": "Application ID",
+          "type": "string"
+        },
+        "event_type": {
+          "description": "Event type",
+          "type": "string"
+        },
+        "provisioning_status": {
+          "title": "ProvisioningStatus",
+          "description": "The provisioning status of the subscription",
+          "enum": [
+            "Pending",
+            "Provisioning",
+            "Provisioned",
+            "Error"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "SubscriptionCreated": {
+      "description": "Subscription created",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Subscription ID",
+          "type": "string"
+        },
+        "provisioning_status": {
+          "title": "ProvisioningStatus",
+          "description": "The provisioning status of the subscription",
+          "enum": [
+            "Pending",
+            "Provisioning",
+            "Provisioned",
+            "Error"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "SubscriptionRequest": {
+      "description": "The request for the Webhook subscription.",
+      "required": [
+        "event_type",
+        "webhook_url"
+      ],
+      "type": "object",
+      "properties": {
+        "webhook_url": {
+          "description": "The Webhook URL for the subscription.",
+          "type": "string",
+          "title": "Webhook URL"
+        },
+        "event_type": {
+          "description": "The event type for the subscription.",
+          "type": "string",
+          "enum": [
+            "com.blackbaud.constituent.add.v1",
+            "com.blackbaud.constituent.change.v1",
+            "com.blackbaud.constituent.delete.v1",
+            "com.blackbaud.constituent.action.add.v1",
+            "com.blackbaud.constituent.action.change.v1",
+            "com.blackbaud.constituent.action.delete.v1",
+            "com.blackbaud.constituent.address.add.v1",
+            "com.blackbaud.constituent.address.change.v1",
+            "com.blackbaud.constituent.address.delete.v1",
+            "com.blackbaud.constituent.code.add.v1",
+            "com.blackbaud.constituent.code.change.v1",
+            "com.blackbaud.constituent.code.delete.v1",
+            "com.blackbaud.constituent.customfield.add.v1",
+            "com.blackbaud.constituent.customfield.change.v1",
+            "com.blackbaud.constituent.customfield.delete.v1",
+            "com.blackbaud.constituent.emailaddress.add.v1",
+            "com.blackbaud.constituent.emailaddress.change.v1",
+            "com.blackbaud.constituent.emailaddress.delete.v1",
+            "com.blackbaud.constituent.onlinepresence.add.v1",
+            "com.blackbaud.constituent.onlinepresence.change.v1",
+            "com.blackbaud.constituent.onlinepresence.delete.v1",
+            "com.blackbaud.constituent.phone.add.v1",
+            "com.blackbaud.constituent.phone.change.v1",
+            "com.blackbaud.constituent.phone.delete.v1",
+            "com.blackbaud.constituent.relationship.add.v1",
+            "com.blackbaud.constituent.relationship.change.v1",
+            "com.blackbaud.constituent.relationship.delete.v1",
+            "com.blackbaud.constituent.solicitcode.add.v1",
+            "com.blackbaud.constituent.solicitcode.change.v1",
+            "com.blackbaud.constituent.solicitcode.delete.v1",
+            "com.blackbaud.gift.add.v1",
+            "com.blackbaud.gift.change.v1",
+            "com.blackbaud.gift.delete.v1",
+            "com.blackbaud.constituent.prospect.add.v1",
+            "com.blackbaud.constituent.prospect.change.v1",
+            "com.blackbaud.constituent.prospect.delete.v1"
+          ],
+          "title": "Event Type"
+        }
+      },
+      "example": {
+        "webhook_url": "https://example.org/skyapi/webhook/handler?key=sHTZC6xX>&A<(*eR7:D!:jF7(65K@wgk",
+        "event_type": "com.blackbaud.constituent.delete.v1"
+      }
+    },
+    "Subscriptions": {
+      "description": "A collection of Webhook subscriptions",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "The subscriptions",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Subscription"
+          }
+        },
+        "count": {
+          "format": "int32",
+          "description": "Count of subscriptions",
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "oauth2-auth": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://oauth2.sky.blackbaud.com/authorization",
+      "tokenUrl": "https://oauth2.sky.blackbaud.com/token",
+      "scopes": {}
+    }
+  },
+  "security": [
+    {
+      "oauth2-auth": []
+    }
+  ],
+  "tags": []
+}
