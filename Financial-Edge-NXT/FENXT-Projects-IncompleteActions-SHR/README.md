@@ -19,7 +19,7 @@ An email to a designated recipent that contains a table with the following field
 ## Initial Setup
 Download the .zip file in the files list above. After [importing the flow](https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/basics/import-flows), you will need to edit the following pieces:
 
-* Open the initial _Recurrence_ step and edit that to match when you would like the flow to periodically check the Batches. 
+* Open the initial _Recurrence_ step and edit that to match when you would like the flow to periodically check the Project. 
 * Open the "README" Section in the flow and follow the instructions. 
 * Open the _Initialize variable - EnviornmentID_ action and enter your Environment ID.  To get your Enviornment ID, log into Financial Edge NXT Web View, and copy the string of characters after "envid=" in the address bar.  
 * Open the _Initiailze variable - ProjectID_ action and enter the specific ProjectID that you wish to have the flow check for.  Note that this is the "System Record ID" of the project and not the Project ID seen in the Projects list or in the Project record itself.  To get the System Record ID of the project, log into Financial Edge NXT Web View, and observe the number after "/ledger/project" in the address bar. 
