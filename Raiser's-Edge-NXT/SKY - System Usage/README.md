@@ -36,6 +36,13 @@ Create a new Sharepoint List with the following Columns.  This is tested under t
 * RecordID
 * Date/Time
 
+Sharepoint Lists automatically generate IDs which may come in handy for the likes of sorting and reference.  To see the ID column:
+
+* Navigate to the target list first
+* Click the add column button
+* Select the show/hide columns option
+* Check the box for the ID column
+
 ### Flow-specific setup instructions
 1. Convert time zone - Update the _Destination time zone_ to reflect your Org's main time zone. 
 2. Due to issues that often occur when importing a flow that links to Sharepoint, and to help faclitate scenarios in which something other than Sharepoint may be used, the final step that records the data is _not_ included in the template flow.  You will need manually search for the _Sharepoint - Create item_ action or alternate one if using something other than Sharepoint. Once selected you will need to map the following fields:
