@@ -13,6 +13,9 @@ These Add-ins render as a tile on various Raiser's Edge NXT Pages.  See [TileSKY
 ## Page SKY Add-ins
 These render as full pages within the "shell" of Raiser's Edge NXT.  See [PageSKYAddins](../All-In-One-SKYAddins%2BPowerAutomate/PageSKYAddIns.md) for more information. 
 
+## Donor Portal SKY Add-ins
+These render as either call-to-action boxes on the home page of the Raiser's Edge NXT Donor Portal or additional tabs under "My Profile".  Though there aren't specific pre-made content shortcuts for the Portal, items created as a "tile" will appear as tabs under My Profile.  See [Donor Portal Extension Point](https://developer.blackbaud.com/skyapi/docs/addins/concepts/extension-points#donor-portal) for more information.  
+
 ## Permissions
 All actions performed by a Flow are done under the user account of the person who _connected_ the flow, rather than the one viewing/running the flow.  This means access to data/features will be based on the permissions of the one who setup/connected the flow.  Typically, 'anyone' who has a login to Raiser's Edge NXT can connect and run a flow, though what they can do will be based on their Raiser's Edge NXT Permissions. 
 
