@@ -4,13 +4,15 @@ This area contains customizations specific to or including Raiser's Edge NXT.  T
 
 For earlier examples, see the [All-In-One-SKYAddins+PowerAutomate](../All-In-One-SKYAddins%2BPowerAutomate/) folder. 
 
+If this is your first time working with Power Automate, be sure to check out the [Getting Started](https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/getting-started) as well as the basics of [Importing Flows](https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/basics/import-flows)
+
 ## All In One (AIO) Add-ins.
 "All in One" Add-ins are those that uses a single Power Automate Flow to perform both actions and render the results to be used/displayed within Raiser's Edge NXT.  See the [Background Documentation](../All-In-One-SKYAddins%2BPowerAutomate/AllInOne-SKYAddIns-Background.md) for more information. 
 
 ## Tile SKY Add-ins
 These Add-ins render as a tile on various Raiser's Edge NXT Pages.  See [TileSKYAddins](../All-In-One-SKYAddins%2BPowerAutomate/TileSKYAddins.md) for more information. 
 
-## Page SKY Add-ins
+# Page SKY Add-ins
 These render as full pages within the "shell" of Raiser's Edge NXT.  See [PageSKYAddins](../All-In-One-SKYAddins%2BPowerAutomate/PageSKYAddIns.md) for more information. 
 
 ## Donor Portal SKY Add-ins
