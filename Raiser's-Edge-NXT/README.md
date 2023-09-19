@@ -6,6 +6,9 @@ For earlier examples, see the [All-In-One-SKYAddins+PowerAutomate](../All-In-One
 
 If this is your first time working with Power Automate, be sure to check out the [Getting Started](https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/getting-started), [Creating Applications](https://developer.blackbaud.com/skyapi/docs/getting-started#create-an-application), as well as the basics of [Importing Flows](https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/basics/import-flows).  Blackbaud University has [eLearning for the Power Platform Overview](https://learn.blackbaud.com/learn/course/internal/view/elearning/14115/microsoft-power-platform-overview-elearning-blackbaud-raisers-edge-nxt) as well as working with [Power Platform Templates](https://learn.blackbaud.com/learn/course/internal/view/elearning/14114/microsoft-power-platform-templates-elearning-blackbaud-raisers-edge-nxt). 
 
+## Stand-alone Flows
+Many flows listed result in new features such as custom tiles and/or pages added to the system.  Some flows are stand-alone in that they may produce outputs (files, email) and don't add new items to the Raiser's Edge NXT User Interface.  
+
 ## All In One (AIO) Add-ins.
 "All in One" Add-ins are those that uses a single Power Automate Flow to perform both actions and render the results to be used/displayed within Raiser's Edge NXT.  See the [Background Documentation](../All-In-One-SKYAddins%2BPowerAutomate/AllInOne-SKYAddIns-Background.md) for more information. 
 
