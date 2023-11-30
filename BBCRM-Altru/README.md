@@ -1,7 +1,9 @@
 # BBCRM and Altru Customizations
 The examples found here focus on the SKY APIs for BBCRM and Altru released in 2023.  Many of these, at least initially, rely on the "Send HTTP Request" action in the SKY Add-Ins Connector.  See [Send-HTTP-Request.md](./Send-HTTP-Request.md) for more information. 
 
-> Note that for BBCRM Customers, you must be on Service Pack 33 and in Blackbaud Cloud Operations to take advantage of SKY APIs at this time. 
+> Note that for BBCRM Customers in Blackbaud Cloud Operations, you must be on Service Pack 33 and have Blackbaud ID enabled. 
+
+> For those BBCRM customers not hosted by Blackbaud, see https://kb.blackbaud.com/knowledgebase/articles/Article/202277 
 
 ## A note about BBCRM and Altru using the Send HTTP Request Action
 The initial SKY APIs for BBCRM and Altru were developed at the same time.  As such, a majority are structured the same way, with only slight differences designating either BBCRM or Altu.  For example, to get information about an individual, the Request URL for "Get an Individual" in BBCRM is:
