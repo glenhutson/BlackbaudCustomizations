@@ -152,7 +152,7 @@
     }
 
     function invokeNavigation() {
-        client.navigate({ url: 'anotherpage.html' });
+        client.navigate({ url: 'https://glenhutson.github.io/BlackbaudCustomizations/SKYAddinHelloWorld/anotherpage.html' });
     }
 
     function openHelp() {
