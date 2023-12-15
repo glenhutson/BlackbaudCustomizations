@@ -152,7 +152,7 @@
     }
 
     function invokeNavigation() {
-        client.navigate({ url: 'https://www.blackbaud.com' });
+        client.navigate({ url: 'anotherpage.html' });
     }
 
     function openHelp() {
