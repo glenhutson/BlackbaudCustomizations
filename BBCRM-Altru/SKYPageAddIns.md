@@ -3,7 +3,7 @@
 <!-- vscode-markdown-toc -->
 * [Background](#Background)
 	* [Setting Up a Page SKY Add-in](#SettingUpaPageSKYAdd-in)
-* [BBCRM Bonus Feature: Embedded Page SKY Add-ins](#BBCRMBonusFeature:EmbeddedPageSKYAdd-ins)
+* [BBCRM Bonus Feature: Embedded Page SKY Add-ins](#BBCRMBonusFeatureEmbeddedPageSKYAdd-ins)
 	* [The Benefit](#TheBenefit)
 	* [To embed a Page Add-in into BBCRM](#ToembedaPageAdd-inintoBBCRM)
 
@@ -54,7 +54,7 @@ https://app.blackbaud.com/pages/applications/4d540b94-1854-45fa-b1d6-c2039d94b68
 ```
 In the example URL above, the recordId in this case may be an Individual.  As the page is loaded, it can use that recordId + SKY API to retrieve information about that individual and display it. 
 
-## <a name='BBCRMBonusFeature:EmbeddedPageSKYAdd-ins'></a>BBCRM Bonus Feature: Embedded Page SKY Add-ins
+## <a name='BBCRMBonusFeatureEmbeddedPageSKYAdd-ins'></a>BBCRM Bonus Feature: Embedded Page SKY Add-ins
 BBCRM Customers can use native Page Designer functions to embed the SKY Page add-ins directly into the BBCRM shell.  SKY Page add-ins are mobile responsive by nature, so they can also be added as a tab on record pages.  This hybrid approach allows one to take advantage of many of the SKY Add-in features in the native BBCRM framework. In some cases, using the [Power BI Host SPA ](https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/power-bi/power-bi-addins) on a Page Add-In embedded on a BBCRM page may cause better results in working with those reports. 
 
 > Note this is only applicable to BBCRM instances in Blackbaud Cloud Operations with BBID enabled and does not apply to Altru customers. 
