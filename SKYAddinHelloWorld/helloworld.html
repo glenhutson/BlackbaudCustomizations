@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.2.8/es6-promise.auto.min.js" integrity="sha512-S/NdLunV4IO1xPIfb9IT9IXhzObeMg6WRxAx+8vOV2DM+iM6r0Q6iioIwrYoVI5qHEkPVMv19m/09NnLIjYuXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@blackbaud/sky-addin-client@1.2.0/bundles/sky-addin-client.umd.min.js" integrity="sha384-BBx6VwjM+7HXpMVMQM2l/O8fVdJL6/7NDtxWpFGlZ7ja9BK8fKXgJ0eI1pJljKng" crossorigin="anonymous"></script>
+    
+    <script src="HelloWorld.js"></script>
+    <link href="HelloWorld.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+    <div id="helpContent">
+        <div>
+            You can subscribe to the <code>helpClick</code> and provide additional help content to your users.
+        </div>
+        <div id="helpContent-exit">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+    <div id="tileContent">
+        <div id="helloWorldContainer">
+            <h1 style="margin-top: 0;">Hello world!</h1>
+            <div>This is a very simple custom tile</div>
+        </div>
+
+        <p>
+            <div>The environment ID is a context value that is available to all add-ins:</div>
+            <span id="environmentId"></span>
+        </p>
+
+        <p>
+            <div>Additional context values vary for each extension point - for the current extension point, the following context is provided:</div>
+            <span id="context"></span>
+        </p>
+
+        <p>
+            <div>Click the button to request a user identity token for the current user:</div>
+            <button id="getUserIdentityToken">Get user identity token</button>
+        </p>
+
+        <p id="userIdentityToken">
+            <div>The following string represents the identity of the current user, and can be provided to the add-in's backend for validation:</div>
+            <span id="userIdentityTokenValue"></span>
+        </p>
+
+        <p>
+            <div>Add-ins can show modal dialogs:</div>
+            <button id="showModal">Show a simple modal</button>
+        </p>
+
+        <p>
+            <div>Modals can be implemented using SKY UX for a more consistent user experience. The following button shows a modal implemented in a separate <a href="https://github.com/blackbaud/skyux-spa-addin-modal-demo" target="_blank">modal demo</a> SKY UX SPA:</div>
+            <button id="showAddCustomerModal">Show <b>Add customer</b> modal</button>
+        </p>
+
+        <p id="modalResults">
+            <div>The modal returned the following context:</div>
+            <span id="modalContextReturned"></span>
+        </p>
+
+        <p>
+            <div>Add-ins can also open the help window:</div>
+            <button id="openHelp">Open help for <b>applications.html</b></button>
+        </p>
+
+        <p>
+            <div>Add-ins can also navigate the host page:</div>
+            <button id="invokeNavigation">Navigate to <b>https://www.blackbaud.com</b></button>
+        </p>
+
+        <p>
+            <div>Add-ins can show toast messages:</div>
+            <button id="showToast">Show a toast</button>
+        </p>
+
+        <p>
+            <div>Add-ins can show a flyout panel:</div>
+            <button id="showFlyout">Show a simple flyout</button>
+        </p>
+
+        <p id="flyoutClosed">
+            The flyout has been closed
+        </p>
+
+        <p>
+            <div>Add-ins can show confirm dialogs:</div>
+            <button id="showConfirm">Show a confirm dialog</button>
+        </p>
+
+        <p id="confirmAction">
+            <div>The confirm dialog returned the following action:</div>
+            <span id="confirmActionReturned"></span>
+        </p>
+
+        <p>
+            <div>Add-ins can show error dialogs:</div>
+            <button id="showError">Show an error dialog</button>
+        </p>
+    </div>
+    <div id="settingsContent">
+        <p>
+            This is a simple example of handling the <code>settingsClick</code> to show user-specific tile options.
+        </p>
+        <p>
+            <input type="checkbox" id="showHelloWorldChk" />
+            <label for="showHelloWorldChk">Show <b>Hello world!</b> header</label>
+        </p>
+        <p>
+            <button id="closeSettings">Close settings</button>
+        </p>
+    </div>
+</body>
+</html>

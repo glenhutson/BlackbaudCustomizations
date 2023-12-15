@@ -1,0 +1,59 @@
+body {
+    padding-top: 5px;
+}
+
+#authToken {
+    display: none;
+}
+
+#modalResults {
+    display: none;
+}
+
+#helpContent {
+    align-items: center;
+    background-color: #81d4f7;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    border-left: solid 30px;
+    border-color: #00b4f1;
+    color: #212327;
+    display: flex;
+    flex-direction: row;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 21px;
+    padding: 10px;
+}
+
+#helpContent::before {
+    content: "\f05a";
+    font-family: "Font Awesome\ 5 Free";
+    margin-left: -30px;
+    margin-right: 19px;
+    color: #fff;
+    font-size: .8em;
+    font-weight: 900;
+}
+
+#helpContent-exit {
+    cursor: pointer;
+    float: right;
+    opacity: 0.8;
+    position: relative;
+    right: 5px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+#settingsContent {
+    background: #fff;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    display: none;
+    right: 0px;
+    padding: 15px;
+    position: fixed;
+    top: 0px;
+    width: 300px;
+}
