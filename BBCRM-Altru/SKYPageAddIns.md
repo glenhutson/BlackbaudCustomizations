@@ -29,7 +29,7 @@ If you're new to working with SKY Applications, etc, you can find a getting star
 ### <a name='SettingUpaPageSKYAdd-in'></a>Setting Up a SKY Page Add-in
 Page Add-ins are established under the Add-in area of a SKY Developer App by Giving it a name, the Add-in URL (the external source that's actually powering the content/features), and select _Navigation_ => _Page_ under the Extension Point. 
 
-![Setting up a Page add-in](./ConfigurePageAddin.png)
+![Setting up a Page add-in](./ConfigurePageAddIn.png)
 
 Want to kick the tires a bit on what's available via a SKY Page Add-in?  Create an app and add `https://glenhutson.github.io/BlackbaudCustomizations/SKYAddinHelloWorld/helloworldpage.html` as a Page add-in.  This sample page contains many of the elements available to SKY Page add-ins. 
 
