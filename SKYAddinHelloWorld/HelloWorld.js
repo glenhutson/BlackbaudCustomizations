@@ -57,7 +57,7 @@
                 // inform the host page that the add-in is ready to be shown
                 args.ready({
                     showUI: true,
-                    title: 'My Custom Tile',
+                    title: 'My Custom Content',
                     tileConfig: {
                         showHelp: true,
                         showSettings: true,
