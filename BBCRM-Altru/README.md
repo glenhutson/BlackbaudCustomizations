@@ -23,7 +23,7 @@ Notice that for BBCRM, the first part of the URL after the host `https://api.sky
 This means, that with a slight tweak, many examples can be used for either.  For examples that can be used for either, only one example will be created, but instructions will be given on how to switch it from BBCRM to Altru or vice versa.  As possible, this will be changing a single variable.  
 
 ## SKY Page Add-Ins
-Some of these utilize SKY Page Add-Ins to extend the functionality of BBCRM / Altru.  These are available to Altru as well as BBCRM in Blackbaud Cloud Operations with BBID enabled.  Those BBCRM customers can also embed these directly within BBCRM. For a brief synopsis and links to more details, see [SKYPageAddins.md](./SKYPageAddins.md) . 
+Some of these utilize SKY Page Add-Ins to extend the functionality of BBCRM / Altru.  These are available to Altru as well as BBCRM in Blackbaud Cloud Operations with BBID enabled.  Those BBCRM customers can also embed these directly within BBCRM. For a brief synopsis and links to more details, see [SKYPageAddIns.md](./SKYPageAddIns.md) . 
 
 ## Support
 As with all examples in this repository, support is given exclusively via the Microsoft Power Platform discussions at https://community.blackbaud.com/forums/viewcategory/586 (URL accurate as of the time of this writing).  This can be done either via replying to the original post dicussing a specific example or via a new discussion and "tagging" the author.  Direct messages to the author will be redirected back to the main discussion area. 
