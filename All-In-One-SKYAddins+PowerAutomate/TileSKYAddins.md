@@ -13,7 +13,7 @@
 <!-- /vscode-markdown-toc -->
 
 ## <a name='Summary'></a>Summary
-These instructions give a high-level overview on the steps needed to install a Tile All-in-One Add-in.  View the documentation for each Add-In for any variations needed.
+These instructions give a high-level overview on the steps needed to install Tile add-ins.  View the documentation for each Add-In for any variations needed.
 
 ## <a name='Prerequisites'></a>Prerequisites
 To successfully get this setup, you need to meet the following prerequisites before beginning.
