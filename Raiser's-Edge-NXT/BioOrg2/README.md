@@ -8,10 +8,16 @@ It does not contain all the pieces of information that's available on those tabs
 
 This one flow handles both Individual and Organizations by branching depending on type of Constituent.  
 
-See the [Tile SKY Add-Ins readme](../../All-In-One-SKYAddins+PowerAutomate/TileSKYAddins.md) for information on installation.  
-
+## Examples
 Individual / Bio 2 
+
 !["Bio 2" Example](Bio2.png) 
 
 Organization / Org 2 + Matching Gift
+
 !["Org 2" Example](Org2.png)
+
+## Installation
+
+See the [Tile SKY Add-Ins readme](../../All-In-One-SKYAddins+PowerAutomate/TileSKYAddins.md) for information on installation.  
+
