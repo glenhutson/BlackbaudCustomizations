@@ -2,7 +2,8 @@
 <!-- vscode-markdown-toc -->
 * [Summary](#Summary)
 * [Prerequisites](#Prerequisites)
-* [Installation](#Installation)
+* [Installation - All in One](#Installation-AllinOne)
+* [Installation - Adaptive Card](#Installation-AdaptiveCard)
 * [Activation](#Activation)
 
 <!-- vscode-markdown-toc-config
@@ -22,7 +23,7 @@ To successfully get this setup, you need to meet the following prerequisites bef
 
 SKY Add-Ins are considered custom applications, so you'll need to register your application with SKY Developer.  
 
-> **Note**: Multiple Add-ins can be housed under the _same_ application, you need not create a separate application for each.  It's entirely up to if you have all custom tiles under one application or under separate.  If you already have an application setup for your Add-Ins, you can skip these Prerequiste and subsequent Activation steps. 
+> **Note**: Multiple Add-ins can be housed under the _same_ application, you need not create a separate application for each.  It's entirely up to if you have all custom tiles under one application or under separate.  If you already have an application setup for your Add-Ins, you can skip these Prerequisite and subsequent Activation steps. 
 
 1. Go to the SKY Developer My applications page.
 2. Select Add.
@@ -42,17 +43,19 @@ SKY Add-Ins are considered custom applications, so you'll need to register your 
 
 This is _similar_ to the steps needed as a pre-requisite to setting up an add-in button letter flow.  You can watch a video on that at https://youtu.be/9jGsh-uRAik. 
 
-## <a name='Installation'></a>Installation
+## <a name='Installation-AllinOne'></a>Installation - All in One
+
+These are flows that result in HTML output.  For those designated as Adaptive Card, see the next section. 
 
 > Before installing any All-In-One Custom Tile, make sure you review any documentation in the corresponding folder as well as any steps labeled "README" in the flow. 
 
 1. Download the zip file located in the appropriate directory. (These are versioned where "X" is the version number.) Do _not_ unzip the file (it should stay as one file).  
 2. Review the instructions at https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/basics/import-flows for Importing flows into your Power Automate account. Stop before the "Next Steps" section. 
 3. Edit the flow if it doesn't already take you to the editor. 
-4. Open up the area that starts with "README - ACTION REQUIRED" to review that information and take associated steps.  Not doing this will cause your application to immediatley terminate when it tries to run. 
-5. Open the _Initilize variable - ApplicationID_ step and replace the _Value_ there with the Application ID you registered earlier.  This is an important step in making sure that this flow is only being run from within your environment. 
+4. Open up the area that starts with "README - ACTION REQUIRED" to review that information and take associated steps.  Not doing this will cause your application to immediately terminate when it tries to run. 
+5. Open the _Initialize variable - ApplicationID_ step and replace the _Value_ there with the Application ID you registered earlier.  This is an important step in making sure that this flow is only being run from within your environment. 
 6. Open the _Initialize variable - AuthorizedUsers_ step. If you want to allow only select people to see this tile, enter the email address associated with their Blackbaud ID account on the _Value_ line, separated by commas.  Leave it blank to allow everyone accessing the system to be able to see it.  
-7. Open the _Initialize variable - TileName_ step.  This is where you can relable the title of the tile seen when viewing it. 
+7. Open the _Initialize variable - TileName_ step.  This is where you can relabel the title of the tile seen when viewing it. 
 8. _Don't touch anything else before the Switch Statement_. These steps contain all the needed CSS and Coding needed to render your tile.  In most scenarios, even when you're creating your own Add-In, you should not need to touch these.  
 9. Open the _Switch - Which Function_ step, the _Action_ function underneath.  There may be one or more Scopes containing the steps. This contains the core of what the flow is doing to get information about to display in the Tile.  Review it for any exclamation marks indicating you have to reestablish a connection to  either Raiser's Edge NXT and/or 3rd party connectors. 
 10. Save your flow. (But don't exit it yet)  
@@ -61,8 +64,29 @@ This is _similar_ to the steps needed as a pre-requisite to setting up an add-in
 13. Under the Add-ins tile, click the _Add_ button. 
 14. Under the _Add-in name_ field, put in a description that makes sense to you.  It can be the same thing you put in the _TileName_ step above, but doesn't have to be. 
 15. Under the _Add-in URL_, paste in the Web Address you copied from the _When a HTTP request is received_ step prior. 
-16.  Review documentation for each tile to see which Extension Point this will use. An Extension point is basically where the tile will show.  For example, to add a tile to a Cosntituent Record, under _Extension point_, expand _Development Office_, and then _Constituents_, and select _Constituent Tile Dashboard_. 
+16.  Review documentation for each tile to see which Extension Point this will use. An Extension point is basically where the tile will show.  For example, to add a tile to a Constituent Record, under _Extension point_, expand _Development Office_, and then _Constituents_, and select _Constituent Tile Dashboard_. 
 17. Click _Save_. 
+
+## <a name='Installation-AdaptiveCard'></a>Installation - Adaptive Card
+
+[Adaptive Card](https://adaptivecards.io/) based flows are a bit more streamlined than the All In One scenarios as more of the heavy lifting is done behind the scenes.  Always check the instructions included in the Flow and/or associated Readme for additional information. 
+
+1. Download the zip file located in the appropriate directory. (These are versioned where "X" is the version number.) Do _not_ unzip the file (it should stay as one file).  
+2. Review the instructions at https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/basics/import-flows for Importing flows into your Power Automate account. Stop before the "Next Steps" section. 
+3. Edit the flow if it doesn't already take you to the editor. 
+4. Open up the area that starts with "README - ACTION REQUIRED" to review that information and take associated steps.  Not doing this will cause your application to immediately terminate when it tries to run. 
+5. Open the _Validate a user identity token_ step and replace "Application ID" with your Application ID. 
+6. Open _Compose - Authorized Users_ (if present) to determine which users can view the content.  
+7. Save your flow. (But don't exit it yet)  
+8. Scroll all the way back to the top of the flow, open the _When a HTTP request is received_ step, and copy the _HTTP POST URL_.  You should see a copy icon (what looks like two pages on top of each other).  Clicking on that will save the entire address to your clipboard.  You'll need this in a moment. 
+9.  In order to setup an Adaptive Card to be used, a bit complex URL will have to be constructed.  You can [find the full details here](https://developer.blackbaud.com/skyapi/docs/addins/get-started/adaptive-card-addins#use-the-adaptive-card-host-spa). A shortcut has been created that will take the needed information and send you an email with the full complex URL.  [See this community post](https://community.blackbaud.com/forums/viewtopic/586/65850) on how to use the SKY Add-in URL Builder. 
+10. Go back to the application you created in your SKY Developer Account earlier. 
+11. Under the Add-ins tile, click the _Add_ button. 
+12. Under the _Add-in name_ field, put in a description that makes sense to you.  It can be the same thing you put in the _TileName_ step above, but doesn't have to be. 
+13. Under the _Add-in URL_, paste in the Web Address you created from the instructions above. 
+14.  Review documentation for each tile to see which Extension Point this will use. An Extension point is basically where the tile will show.  For example, to add a tile to a Constituent Record, under _Extension point_, expand _Development Office_, and then _Constituents_, and select _Constituent Tile Dashboard_. 
+15. Click _Save_.    
+
 
 
 ## <a name='Activation'></a>Activation 
