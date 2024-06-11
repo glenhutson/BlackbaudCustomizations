@@ -1,5 +1,5 @@
 # On Demand Digest via Apple Shortcut
-This is an example of how one can kick off an on-demand process via Apple Shortcuts.  Power Automate will be used as the tool to access SKY API.  This will kick off a gift digest on demand and deliver the results via email. 
+This is an example of how one can kick off an on-demand process via Apple Shortcuts.  Power Automate will be used as the tool to access SKY API.  This will kick off a gift digest on demand and deliver the results via email. [See the main readme](../README.md) for more details on the approach. 
 
 There are a number of scheduled and on-demand examples of email digests shared in both the [Blackbaud Specific Microsoft Power Platform Community](https://community.blackbaud.com/forums/viewcategory/586) as well as the [Template Showcase](https://docs.blackbaud.com/microsoft-connectors-docs/microsoft-power-platform/showcase).  The digest here will be a more simplistic one with the focus of the excercise on linking Apple Shortcuts to Power Automate. 
 
