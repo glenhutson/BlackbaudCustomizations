@@ -9,6 +9,8 @@ _Pay specific attention to the installation instructions for full functionality_
 ## Installation
 See the [Raiser's Edge NXT Readme](../README.md) for links discussing the various aspects of working with templates, specifically the links for Importing Flows. 
 
+_This Flow currently requires that the connecting user has the Extensibility role with NXT Data Integration API task permission._
+
 ### Flow-specific installation instructions
 1. In order to make it easier to import for various scenarios, the final email actions are _not_ included.  You **MUST** add an Outlook, Gmail, or other email action/connector. 
 
@@ -24,7 +26,7 @@ See the [Raiser's Edge NXT Readme](../README.md) for links discussing the variou
 
 ### Flow-specific considerations
 1. This version does _not_ take into account soft credits which would support listing multiple donors in the acknowledgement email. 
-2. This version does _not_ list fund(s) in the email acknowledgement as this will need to potentially take into account soft credits.  
+2. This version does _not_ list fund(s) in the email acknowledgement as this will need to potentially take into account split gifts.  
 
 ![Add Email Action - Classic View](./AddEmailAction-Classic.png)
 Area to add email action as seen in Power Automate Classic View. 
