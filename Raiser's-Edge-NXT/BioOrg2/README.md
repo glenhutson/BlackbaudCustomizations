@@ -1,7 +1,6 @@
 # Constituent Additional Information (AKA "BioOrg2")
 
-[!IMPORTANT]
-On September 17th, 2024, these fields are now native to Raiser's Edge NXT WebView and this customization is considered deprecated.  You can use this as an example of how to pull in other fields not yet available in the Web View.  
+> On September 17th, 2024, these fields are now native to Raiser's Edge NXT WebView and this customization is considered deprecated.  You can use this as an example of how to pull in other fields not yet available in the Web View.
 
 ## Background
 Typically speaking, information available in SKY API is also available in the WebView.  However, that's not always the case.  This Adaptive Card based flow shows an example of surfacing information that is "API-only" as a custom tile.  
