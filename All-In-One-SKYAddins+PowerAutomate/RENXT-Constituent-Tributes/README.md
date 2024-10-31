@@ -14,7 +14,7 @@
 <!-- /vscode-markdown-toc -->
 
 ## <a name='Deprecation'></a>Deprecation
-As of October 30th, 2024, [native viewing _and_ editing of Tributes on Constituent Records are available](https://community.blackbaud.com/blogs/13/9834).  
+As of October 30th, 2024, [native viewing _and_ editing of Tributes on Constituent Records are available](https://community.blackbaud.com/blogs/13/9834) in the WebView.   
 
 ## <a name='Summary'></a>Summary
 Honor/Memorial information is currently managed through the Database View.  This Add-In displays an Honor/Memorial tile in the Web View with basic Tribute information such as Tribute Type, Description, Notes, Dates, and if it's active.  
