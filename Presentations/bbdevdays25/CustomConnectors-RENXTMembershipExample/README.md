@@ -2,6 +2,8 @@
 
 The instructions here provide an example of how to create a SKY API based Custom Connector for the Power Platform, using Raiser's Edge NXT Membership as the subject.  
 
+> Custom Connectors are not _required_ to access endpoints that aren't already in a connector.  The _Send an HTTP Request_ Action in the [SKY Add-ins Connector](https://learn.microsoft.com/en-us/connectors/blackbaudskyaddins/#send-an-http-request) can connect to any SKY API endpoint aside from Payments.  This is meant as an example of creating a Custom Connector for a Blackbaud SKY API Solution. 
+
 (The instructions are adapted from those provided by [npAutomate](https://npautomate.com/) for a similar exercise for Blackbaud Financial Edge NXT). 
 
 ## Warning
