@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <title></title>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.2.8/es6-promise.auto.min.js" integrity="sha512-S/NdLunV4IO1xPIfb9IT9IXhzObeMg6WRxAx+8vOV2DM+iM6r0Q6iioIwrYoVI5qHEkPVMv19m/09NnLIjYuXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@blackbaud/sky-addin-client@1.2.0/bundles/sky-addin-client.umd.min.js" crossorigin="anonymous"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js" integrity="sha384-kM3+BR0fKGmv8mDasMGLSHdqcbgWHUNWV1rAL+tkqnH578xS82vhlu9gR5BHhBai" crossorigin="anonymous"></script>
+    <script src="https://sky.blackbaudcdn.net/static/sky-addin-client/1/sky-addin-client.umd.min.js" integrity="sha384-hGCZIGe/HKlp4gL+w5i3OaI9f9Hj1bPG2+G8XPQJwCw/XiuDD3uXLZtAfJAABP4+" crossorigin="anonymous"></script>
+
     <script src="HelloWorld.js"></script>
     <link href="HelloWorld.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -16,7 +15,7 @@
 <body>
     <div id="helpContent">
         <div>
-            You can subscribe to the <code>helpClick</code> and provide additional help content to your users.
+            You can subscribe to the <code>inlineHelpClick</code> and provide additional help content to your users.
         </div>
         <div id="helpContent-exit">
             <i class="fas fa-times"></i>
@@ -70,7 +69,7 @@
 
         <p>
             <div>Add-ins can also navigate the host page:</div>
-            <button id="invokeNavigation">Navigate to another page.</button>
+            <button id="invokeNavigation">Navigate to <b>https://www.blackbaud.com</b></button>
         </p>
 
         <p>
