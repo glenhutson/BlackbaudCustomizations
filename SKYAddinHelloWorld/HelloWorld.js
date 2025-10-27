@@ -138,7 +138,7 @@
         var context = $.extend(true, {}, initialArgs.context);
         context['anotherValue'] = 'this value was passed to the modal';
 
-        showModal('https://blackbaudaddinhelloworld.azurewebsites.net/helloworldmodal.html', context);
+        showModal('https://glenhutson.github.io/BlackbaudCustomizations/SKYAddinHelloWorld/HelloWorldModal.html', context);
     }
 
     function showAddCustomerModal() {
@@ -171,7 +171,7 @@
 
         // show a flyout and pass it some content
         client.showFlyout({
-            url: 'https://blackbaudaddinhelloworld.azurewebsites.net/helloworldflyout.html',
+            url: 'https://glenhutson.github.io/BlackbaudCustomizations/SKYAddinHelloWorld/HelloWorldFlyout.html',
             showIterator: true,
             iteratorPreviousDisabled: false,
             iteratorNextDisabled: false,
