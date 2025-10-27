@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js" integrity="sha384-kM3+BR0fKGmv8mDasMGLSHdqcbgWHUNWV1rAL+tkqnH578xS82vhlu9gR5BHhBai" crossorigin="anonymous"></script>
+    <script src="https://sky.blackbaudcdn.net/static/sky-addin-client/1/sky-addin-client.umd.min.js" integrity="sha384-hGCZIGe/HKlp4gL+w5i3OaI9f9Hj1bPG2+G8XPQJwCw/XiuDD3uXLZtAfJAABP4+" crossorigin="anonymous"></script>
+
+    <script src="HelloWorldFlyout.js"></script>
+    <link href="HelloWorldFlyout.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+    <p>This is a simple flyout panel</p>
+
+    <div>
+        <p></p>
+        <div>The environment ID is a context value that is available to all add-ins:</div>
+        <span id="environmentId"></span>
+    </div>
+
+    <div>
+        <p></p>
+        <div>Flyouts receive arbitrary context when shown - in this example, the following context was provided:</div>
+        <span id="context"></span>
+    </div>
+</body>
+</html>
