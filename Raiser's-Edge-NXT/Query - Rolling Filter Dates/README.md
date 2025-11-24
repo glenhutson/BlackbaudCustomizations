@@ -44,7 +44,7 @@ Switch out the _Manually trigger a flow_ with a recurrence trigger to have this 
 7. As you perform your experimentation, you may find that you don't need the entire Query in the _Updated Query_ action.  For example, if you don't include the "Name" field, then it won't touch/update the Query name.  The sections of the Query spec you need to include is dependant on the structure of the Query and what is updated via the Flow.  Leaving off the wrong items may inadvertently delete part of the Query.  
 
 ## Support
-This example is not covered by Blackbaud Support.  For any questions, it is recommended you reply to the Blackbaud Community post that introduced this example.  Direct Messages and/or Emails for assistance may not be replied to or may redirect you to the Community.  
+This example is not covered by Blackbaud Support.  For any questions, it is recommended you reply to the [Blackbaud Community post that introduced this example](https://community.blackbaud.com/discussion/84163/sharing-my-power-automate-template-query-rolling-filter-dates).  Direct Messages and/or Emails for assistance may not be replied to or may redirect you to the Community.  
 
 ## No Warranty
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
