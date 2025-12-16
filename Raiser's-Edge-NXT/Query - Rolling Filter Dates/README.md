@@ -21,7 +21,7 @@ The example included here is a simple Gift Query which filters for gifts on or a
 
 6. Open the _Subtract from time_ action and note the settings.  This will be what determines what the updated Date Query filter will be.
 
-7. Save and run the query.  You may have to make sure the query is "on" before running it. 
+7. Save and run the flow.  You may have to make sure the flow is "on" before running it. 
 
 8. Go back to the example query and note that the date has been adjusted.  
 
